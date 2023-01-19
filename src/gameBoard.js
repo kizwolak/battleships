@@ -13,7 +13,7 @@ export default function gameBoard() {
                 } else {
                     let first = coordinate[0];
                     let second = coordinate[1];
-                    // this.board[first][second] = true;
+                    this.board[first][second] = true;
                 }
             }
         },
