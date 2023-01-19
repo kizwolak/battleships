@@ -21,15 +21,16 @@ export default function gameBoard(array) {
       array.push(Ship(...coordinates));
     },
     receiveAttack(coordinates) {
-      console.log(coordinates);
       const first = coordinates[0];
       const second = coordinates[1];
       array.forEach((element) => {
         element.location.forEach((location) => {
           const stringifiedCoords = JSON.stringify(coordinates);
           if (JSON.stringify(location) === stringifiedCoords) {
-            console.log(true);
             element.hit();
+          }
+          if (element.hits === element.length) {
+            console.log('Sunken!');
           }
         });
         this.missedAttacks.push([first, second]);
@@ -37,5 +38,3 @@ export default function gameBoard(array) {
     },
   };
 }
-
-// Would it be correct to store all ships in an array, and then loop through them and their "locations" to see if a coordinate is contained within a ship?
