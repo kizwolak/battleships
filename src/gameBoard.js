@@ -1,35 +1,38 @@
-import Ship from "./ship.js";
+import Ship from './ship.js';
 
-function gameBoard() {
-    function board() {
-        const boardToReturn = new Array(10).fill(new Array(10).fill(0));
-        return boardToReturn;
-    }
-    return {
-        board: board(),
-        place: function(...coordinates) {
-            let ship = Ship(...coordinates);
-            for (const coordinate of coordinates) {
-                console.log(coordinate);
-                if (coordinate[0] > 9 || coordinate[0] < 0 || coordinate[1] > 9 || coordinate[1] < 0) {
-                    throw new Error('Coordinate out of bounds. Check all coordinates!');
-                } else {
-                    let first = coordinate[0];
-                    let second = coordinate[1];
-                    this.board[first][second] = Ship([first, second]);
-                }
-            }
-        },
-        missedAttacks: [],
-        receiveAttack: function (coordinate) {
+export default function gameBoard(array) {
+  function board() {
+    const boardToReturn = new Array(10).fill(new Array(10).fill(0));
+    return boardToReturn;
+  }
+  return {
+    board: board(),
+    missedAttacks: [],
+    place(...coordinates) {
+      coordinates.forEach((element) => {
+        if (element[0] > 9 || element[0] < 0 || element[1] > 9 || element[1] < 0) {
+          throw new Error('Coordinate out of bounds. Check all coordinates!');
+        } else {
+          const first = element[0];
+          const second = element[1];
+          this.board[first][second] = true;
+        }
+      });
+      array.push(Ship(...coordinates));
+    },
+    receiveAttack(coordinates) {
+      console.log(coordinates);
+      const first = coordinates[0];
+      const second = coordinates[1];
+      array.forEach((element) => {
+        if (element.location.includes(coordinates)) {
+          console.log(true);
+          element.hit();
+        }
+        this.missedAttacks.push([first, second]);
+      });
+    },
+  };
+}
 
-        }        
-    }
-};
-
-// Would it be correct to store all ships in an array, and then loop through them and their "locations" to see if a coordinate is contained within a ship? 
-
-
-const test = gameBoard();
-test.place([1, 2]);
-console.log(test.board[1][2]);
+// Would it be correct to store all ships in an array, and then loop through them and their "locations" to see if a coordinate is contained within a ship?

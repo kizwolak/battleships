@@ -1,14 +1,14 @@
 export default function Ship(...coordinates) {
-    const length = coordinates.length;
-    return {
-        hits: 0,
-        hit: function() {
-            this.hits += 1;
-        },
-        isSunk: function(length, hits) {
-            if (hits === length) return true; 
-        },
-        length,
-        location: coordinates,
-    }
+  const { length } = coordinates;
+  return {
+    hits: 0,
+    hit() {
+      this.hits += 1;
+    },
+    isSunk(hits) {
+      if (hits === length) return true;
+    },
+    length,
+    location: coordinates,
+  };
 }
