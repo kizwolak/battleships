@@ -1,5 +1,5 @@
 export default function Ship(...coordinates) {
-    length = coordinates.length;
+    const length = coordinates.length;
     return {
         hits: 0,
         hit: function() {

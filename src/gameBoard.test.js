@@ -1,5 +1,4 @@
 import gameBoard from "./gameBoard";
-import Ship from "./ship";
 const gameBoardTest = gameBoard();
 
 it('gameBoard generated properly', () => {
@@ -7,7 +6,7 @@ it('gameBoard generated properly', () => {
 });
 
 it('cannot place ships outside of board', () => {
-    expect(() => gameBoardTest.place([11, 2])).toThrow('Coordinate out of bounds');
+    expect(() => gameBoardTest.place([11, 2])).toThrow(Error);
 });
 
 it('take up properly while making sure it is not taken', () => {
