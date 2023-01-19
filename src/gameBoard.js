@@ -1,16 +1,13 @@
 export default function gameBoard() {
     return {
         board: function() {
-            let rows = new Array(10);
-            for (let element of rows) {
-                element.value = 'O';
-            }
-            for (let i = 0; i < rows.length; i++) {
-                rows[i] = new Array(10);
-                
-            }
-            return rows;
+            const boardToReturn = new Array(10).fill(new Array(10).fill(0));
+            return boardToReturn;
         },
         missedAttacks: [],        
     }
 };
+
+const test = gameBoard();
+const testBoard = test.board();
+console.log(testBoard);
