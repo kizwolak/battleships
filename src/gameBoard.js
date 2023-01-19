@@ -25,10 +25,13 @@ export default function gameBoard(array) {
       const first = coordinates[0];
       const second = coordinates[1];
       array.forEach((element) => {
-        if (element.location.includes(coordinates)) {
-          console.log(true);
-          element.hit();
-        }
+        element.location.forEach((location) => {
+          const stringifiedCoords = JSON.stringify(coordinates);
+          if (JSON.stringify(location) === stringifiedCoords) {
+            console.log(true);
+            element.hit();
+          }
+        });
         this.missedAttacks.push([first, second]);
       });
     },
