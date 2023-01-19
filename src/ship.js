@@ -1,4 +1,5 @@
-export default function Ship(length) {
+export default function Ship(...coordinates) {
+    length = coordinates.length;
     return {
         hits: 0,
         hit: function() {
@@ -7,6 +8,7 @@ export default function Ship(length) {
         isSunk: function(length, hits) {
             if (hits === length) return true; 
         },
-        location: undefined,
+        length,
+        location: coordinates,
     }
 }
