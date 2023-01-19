@@ -6,7 +6,11 @@ export default function gameBoard() {
     return {
         board: board(),
         place: function(coordinates) {
-            return coordinates;
+            for (const coordinate of coordinates) {
+                if (coordinate[0] > 9 || coordinate[0] < 0 || coordinate[1] > 9 || coordinate[1] < 0) {
+                    throw new Error('Coordinate out of bounds');
+                }
+            }
         },
         missedAttacks: [],        
     }
@@ -14,4 +18,3 @@ export default function gameBoard() {
 
 const test = gameBoard();
 console.log(test.board);
-console.log(test.place([[1,2], [2,1]]))
