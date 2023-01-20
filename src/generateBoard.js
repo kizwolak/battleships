@@ -10,21 +10,18 @@ export default function generateBoard() {
   webBoard1.classList.add('activated');
   webBoard2.classList.add('activated');
   const board1 = gameBoard();
+  board1.belongsToPlayer = true;
   const board2 = gameBoard();
   board1.board.forEach((cell) => {
-    cell.forEach(() => {
-      const boardCell = document.createElement('div');
-      boardCell.textContent = 'Cell';
-      boardCell.classList = 'cell';
-      webBoard1.appendChild(boardCell);
-    });
+    const boardCell = document.createElement('div');
+    boardCell.textContent = `${cell[0]}, ${cell[1]}`;
+    boardCell.classList = 'cell';
+    webBoard1.appendChild(boardCell);
   });
   board2.board.forEach((cell) => {
-    cell.forEach(() => {
-      const boardCell = document.createElement('div');
-      boardCell.textContent = 'Cell';
-      boardCell.classList = 'cell';
-      webBoard2.appendChild(boardCell);
-    });
+    const boardCell = document.createElement('div');
+    boardCell.textContent = `${cell[0]}, ${cell[1]}`;
+    boardCell.classList = 'cell';
+    webBoard2.appendChild(boardCell);
   });
 }

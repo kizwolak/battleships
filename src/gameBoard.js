@@ -3,10 +3,17 @@ import Ship from './ship.js';
 export default function gameBoard() {
   const ships = [];
   function board() {
-    const boardToReturn = new Array(10).fill(new Array(10).fill(0));
+    const boardToReturn = [];
+    // const boardToReturn = new Array(10).fill(new Array(10).fill(0));
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        boardToReturn.push([i, j]);
+      }
+    }
     return boardToReturn;
   }
   return {
+    belongsToPlayer: false,
     ships,
     board: board(),
     allShipsSunken: false,
@@ -31,7 +38,7 @@ export default function gameBoard() {
           if (ship.hits === ship.location.length) {
             ship.isSunken();
           }
-          if (ships.every((ship) => ship.isSunkenProperty === true)) {
+          if (ships.every(() => ship.isSunkenProperty === true)) {
             this.allShipsSunken = true;
           }
         });
