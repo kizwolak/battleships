@@ -1,11 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   mode: 'development',
   entry: {
-    main: './src/index.js',
+    main: './src/main.js',
   },
   output: {
     filename: './dist/[name].main.js',
@@ -17,7 +16,7 @@ module.exports = {
       title: 'To-do list',
     }),
   ],
-  
+
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
@@ -27,29 +26,30 @@ module.exports = {
   },
   module: {
     rules: [
-    {
-    test: /\.m?js$/,
-    exclude: /node_modules/,
-    use: {
-        loader: "babel-loader",
-        options: {
-        presets: ['@babel/preset-env']
-        }
-    }
-    },
-    {
-    test: /\.css$/i,
-    use: ['style-loader', 'css-loader'],
-    },
-    {
-      test: /\.(png|svg|jpg|jpeg|gif)$/i,
-      type: 'asset/resource',
-    },
-    {
-      test: /\.(woff|woff2|eot|ttf|otf)$/i,
-      type: 'asset/resource',
-    },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        include: /stylesheets|node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
-  
+
 };

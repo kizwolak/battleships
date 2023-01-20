@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Gruppo';
+    src: url(./fonts/Gruppo-Regular.ttf);
+}
+
+@keyframes opacityAnimation {
+    0% {
+        opacity: 0 
+    }
+    50% {
+        opacity: 0.5
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes colourAnimation {
+    0% { color: black; }
+    100% { color: #ff124f}
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gruppo', sans-serif;
+    background-color: #602080;
+}
+
+h1 {
+    font-size: 6em;
+    color: #ff00a0;
+    animation: opacityAnimation 1s ease-in;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    font-size: 2.5em;
+}
+
+button:hover {
+    color: #ff124f;
+    transition: 0.3s;
+}
+
