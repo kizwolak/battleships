@@ -4,4 +4,6 @@ import Ship from './ship.js';
 import generateBoard from './generateBoard.js';
 
 const newGameButton = document.querySelector('.newGameButton');
-newGameButton.addEventListener('click', generateBoard);
+newGameButton.addEventListener('click', () => {
+  generateBoard();
+});
