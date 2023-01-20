@@ -15,3 +15,9 @@ it('missed shots should be registered within the array', () => {
   gameBoardTest.receiveAttack([3, 4]);
   expect(gameBoardTest).toMatchObject({ missedAttacks: [[3, 4]] });
 });
+
+it('report that all ships have been sunken', () => {
+  gameBoardTest.receiveAttack([1, 2]);
+  gameBoardTest.receiveAttack([2, 3]);
+  expect(gameBoardTest.allShipsSunken).toBe(true);
+});

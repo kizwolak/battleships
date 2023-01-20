@@ -5,7 +5,8 @@ export default function Ship(...coordinates) {
     hit() {
       this.hits += 1;
     },
-    isSunk(hits) {
+    isSunkenProperty: false,
+    isSunken(hits) {
       if (hits === length) { return true; }
     },
     length,

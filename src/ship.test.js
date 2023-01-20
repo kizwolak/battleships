@@ -9,7 +9,7 @@ it('hits registered correctly', () => {
   expect(testShip.hits).toBe(2);
 });
 
-it('ship can be sunk', () => {
+it('ship can be sunken', () => {
   testShip.hit();
-  expect(testShip.isSunk()).toBe(true);
+  expect(testShip.isSunken()).toBe(true);
 });
