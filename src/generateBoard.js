@@ -10,12 +10,24 @@ export default function generateBoard() {
   webBoard1.classList.add('activated');
   webBoard2.classList.add('activated');
   const board1 = gameBoard();
+  board1.place([1, 2]);
   board1.belongsToPlayer = true;
   const board2 = gameBoard();
   board1.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
     boardCell.classList = 'cell';
+    board1.ships.forEach((ship) => {
+      ship.location.forEach((location) => {
+        const stringifiedCoords = JSON.stringify(cell);
+        const stringifiedLocation = JSON.stringify(location);
+        console.log(`coords: ${stringifiedCoords}`);
+        console.log(`location: ${stringifiedLocation}`);
+        if (stringifiedLocation === stringifiedCoords) {
+          boardCell.classList = 'cellTakenByPlayer';
+        }
+      });
+    });
     webBoard1.appendChild(boardCell);
   });
   board2.board.forEach((cell) => {

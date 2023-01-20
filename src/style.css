@@ -82,6 +82,11 @@ h1 {
     border: 1px solid black;
     width: 4em;
     height: 4em;
+    color: transparent;
+}
+
+.cellTakenByPlayer {
+    background-color: #ff124f;
 }
 
 .cell:hover {
