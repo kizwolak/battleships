@@ -7,6 +7,7 @@ export default function gameBoard() {
     return boardToReturn;
   }
   return {
+    ships,
     board: board(),
     allShipsSunken: false,
     missedAttacks: [],
@@ -27,13 +28,12 @@ export default function gameBoard() {
           if (JSON.stringify(location) === stringifiedCoords) {
             ship.hit();
           }
-          if (ship.hits === ship.length) {
-            console.log('Sunken!');
+          if (ship.hits === ship.location.length) {
             ship.isSunken();
           }
-          ships.forEach((ship) => {
-            if (ships.every((ship) => ship.isSunkenProperty === true)) return true;
-          });
+          if (ships.every((ship) => ship.isSunkenProperty === true)) {
+            this.allShipsSunken = true;
+          }
         });
         this.missedAttacks.push([first, second]);
       });

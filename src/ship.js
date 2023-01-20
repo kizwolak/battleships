@@ -7,7 +7,10 @@ export default function Ship(...coordinates) {
     },
     isSunkenProperty: false,
     isSunken(hits) {
-      if (hits === length) { return true; }
+      if (hits === length) {
+        this.isSunkenProperty = true;
+        return true;
+      }
     },
     length,
     location: coordinates,
