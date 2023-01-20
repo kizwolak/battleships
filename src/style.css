@@ -8,7 +8,8 @@
         opacity: 0 
     }
     50% {
-        opacity: 0.5
+        opacity: 0.5;
+        display: block;
     }
     100% {
         opacity: 1
@@ -18,6 +19,10 @@
 @keyframes colourAnimation {
     0% { color: black; }
     100% { color: #ff124f}
+}
+
+@keyframes visibilityAnimationHidden {
+    100% { visibility: hidden; }
 }
 
 * {
@@ -53,10 +58,24 @@ h1 {
     align-items: center;
 }
 
+.boardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
+    justify-content: center;
+    width: 20vw;
+    height: 20vw;
+}
+
+.cell {
+    border: 1px solid black;
+    width: fit-content;
 }
 
 button {
@@ -71,3 +90,13 @@ button:hover {
     transition: 0.3s;
 }
 
+.deactivated {
+    animation: visibilityAnimationHidden 2s ease-out;
+    opacity: 0;
+    display: none;
+    transition: opacity 1.5s display 1.5s linear;
+}
+
+.activated {
+    animation: opacityAnimation 3s ease-in;
+}
