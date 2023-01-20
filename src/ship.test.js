@@ -1,4 +1,3 @@
-import { experiments } from 'webpack';
 import Ship from './ship';
 
 const testShip = Ship([1, 2]);
