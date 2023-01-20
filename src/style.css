@@ -31,6 +31,7 @@
 h1 {
     font-size: 6em;
     color: #ff00a0;
+    background-color: transparent;
     animation: opacityAnimation 1s ease-in;
 }
 
@@ -40,12 +41,22 @@ h1 {
     align-items: center;
     flex-direction: column;
     height: 50vh;
+    background-image: url('/src/images/WIKIPEDIA15_BATTLESHIP.svg');
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
 }
 
 .main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
 }
 
 button {
