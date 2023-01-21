@@ -2,14 +2,11 @@ export default function Ship(...coordinates) {
   const { length } = coordinates.length;
   return {
     hits: 0,
-    hit() {
-      this.hits += 1;
-    },
     isSunkenProperty: false,
-    isSunken(hits) {
+    hit(hits) {
+      this.hits += 1;
       if (hits === length) {
         this.isSunkenProperty = true;
-        return true;
       }
     },
     length,

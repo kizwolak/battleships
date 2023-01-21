@@ -35,11 +35,11 @@ export default function gameBoard() {
           if (JSON.stringify(location) === stringifiedCoords) {
             ship.hit();
             console.log('hit!');
+            console.log(ship.isSunkenProperty);
           }
-          if (ship.hits === ship.location.length) {
-            ship.isSunken();
-          }
+          ships.every((ship) => console.log(ship));
           if (ships.every(() => ship.isSunkenProperty === true)) {
+            console.log('all gone, capn!');
             this.allShipsSunken = true;
           }
         });
