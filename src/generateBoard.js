@@ -13,6 +13,7 @@ export default function generateBoard() {
   board1.place([1, 2]);
   board1.belongsToPlayer = true;
   const board2 = gameBoard();
+  board2.place([1, 2]);
   board1.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
@@ -27,16 +28,16 @@ export default function generateBoard() {
       });
     });
     webBoard1.appendChild(boardCell);
-    boardCell.addEventListener('click', () => {
-      const cellContents = `[${boardCell.textContent}]`;
-      console.log(cellContents);
-      board1.receiveAttack(JSON.parse(cellContents));
-    });
   });
   board2.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
     boardCell.classList = 'cell';
     webBoard2.appendChild(boardCell);
+    boardCell.addEventListener('click', () => {
+      const cellContents = `[${boardCell.textContent}]`;
+      console.log(cellContents);
+      if (board2.receiveAttack(JSON.parse(cellContents)) === true) boardCell.classList = 'cellTakenByPlayer';
+    });
   });
 }

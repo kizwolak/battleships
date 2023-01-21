@@ -29,22 +29,24 @@ export default function gameBoard() {
     receiveAttack(coordinates) {
       const first = coordinates[0];
       const second = coordinates[1];
+      let toBeReturned;
       ships.forEach((ship) => {
         ship.location.forEach((location) => {
           const stringifiedCoords = JSON.stringify(coordinates);
           if (JSON.stringify(location) === stringifiedCoords) {
             ship.hit();
-            console.log('hit!');
-            console.log(ship.isSunkenProperty);
+            toBeReturned = true;
           }
-          ships.every((ship) => console.log(ship));
           if (ships.every(() => ship.isSunkenProperty === true)) {
-            console.log('all gone, capn!');
             this.allShipsSunken = true;
+          } else {
+            this.missedAttacks.push([first, second]);
+            toBeReturned = false;
           }
+          return toBeReturned;
         });
-        this.missedAttacks.push([first, second]);
       });
+      return toBeReturned;
     },
   };
 }
