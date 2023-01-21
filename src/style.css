@@ -86,6 +86,10 @@ h1 {
 }
 
 .cellTakenByPlayer {
+    border: 1px solid black;
+    width: 4em;
+    height: 4em;
+    color: transparent;
     background-color: #ff124f;
 }
 

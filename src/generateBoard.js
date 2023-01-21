@@ -21,14 +21,17 @@ export default function generateBoard() {
       ship.location.forEach((location) => {
         const stringifiedCoords = JSON.stringify(cell);
         const stringifiedLocation = JSON.stringify(location);
-        console.log(`coords: ${stringifiedCoords}`);
-        console.log(`location: ${stringifiedLocation}`);
         if (stringifiedLocation === stringifiedCoords) {
           boardCell.classList = 'cellTakenByPlayer';
         }
       });
     });
     webBoard1.appendChild(boardCell);
+    boardCell.addEventListener('click', () => {
+      const cellContents = `[${boardCell.textContent}]`;
+      console.log(cellContents);
+      board1.receiveAttack(JSON.parse(cellContents));
+    });
   });
   board2.board.forEach((cell) => {
     const boardCell = document.createElement('div');

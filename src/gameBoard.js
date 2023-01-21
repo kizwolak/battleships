@@ -34,6 +34,7 @@ export default function gameBoard() {
           const stringifiedCoords = JSON.stringify(coordinates);
           if (JSON.stringify(location) === stringifiedCoords) {
             ship.hit();
+            console.log('hit!');
           }
           if (ship.hits === ship.location.length) {
             ship.isSunken();
