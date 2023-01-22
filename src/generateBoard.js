@@ -1,4 +1,5 @@
 import gameBoard from './gameBoard.js';
+import placeShips from './placeShips.js';
 
 export default function generateBoard() {
   const title = document.querySelector('.title');
@@ -12,10 +13,8 @@ export default function generateBoard() {
   board1Container.classList = ('board1container activated');
   board2Container.classList = ('board1container activated');
   const board1 = gameBoard();
-  board1.place([1, 2]);
   board1.belongsToPlayer = true;
   const board2 = gameBoard();
-  board2.place([1, 2]);
   board1.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
@@ -47,4 +46,5 @@ export default function generateBoard() {
     webBoard2.appendChild(boardCell);
     boardCell.addEventListener('click', boardCellClick);
   });
+  placeShips();
 }
