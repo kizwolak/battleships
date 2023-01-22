@@ -31,13 +31,18 @@ export default function generateBoard() {
   });
   board2.board.forEach((cell) => {
     const boardCell = document.createElement('div');
-    boardCell.textContent = `${cell[0]}, ${cell[1]}`;
-    boardCell.classList = 'cell';
-    webBoard2.appendChild(boardCell);
-    boardCell.addEventListener('click', () => {
+    function boardCellClick() {
       const cellContents = `[${boardCell.textContent}]`;
       console.log(cellContents);
       if (board2.receiveAttack(JSON.parse(cellContents)) === true) boardCell.classList = 'cellTakenByPlayer';
-    });
+      else if (board2.receiveAttack(JSON.parse(cellContents)) === false) {
+        boardCell.classList = 'empty';
+        boardCell.removeEventListener('click', boardCellClick);
+      }
+    }
+    boardCell.textContent = `${cell[0]}, ${cell[1]}`;
+    boardCell.classList = 'cell';
+    webBoard2.appendChild(boardCell);
+    boardCell.addEventListener('click', boardCellClick);
   });
 }

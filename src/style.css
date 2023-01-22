@@ -83,6 +83,9 @@ h1 {
     width: 4em;
     height: 4em;
     color: transparent;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;  
 }
 
 .cellTakenByPlayer {
@@ -96,6 +99,10 @@ h1 {
 .cell:hover {
     transition: 0.4s;
     background-color: #fe75fe;
+}
+
+.empty {
+    background-color: #29132e;
 }
 
 button {

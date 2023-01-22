@@ -39,6 +39,7 @@ export default function gameBoard() {
           }
           if (ships.every(() => ship.isSunkenProperty === true)) {
             this.allShipsSunken = true;
+            console.log('end!');
           } else {
             this.missedAttacks.push([first, second]);
             toBeReturned = false;
