@@ -18,7 +18,12 @@ export default function generateBoard() {
   board1.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
-    boardCell.classList = 'cell';
+    // function boardCellClick() {
+    //   const cellContents = `[${boardCell.textContent}]`;
+    //   console.log(cellContents);
+    //   return cellContents;
+    // }
+    boardCell.classList = 'cell1';
     board1.ships.forEach((ship) => {
       ship.location.forEach((location) => {
         const stringifiedCoords = JSON.stringify(cell);
@@ -28,6 +33,7 @@ export default function generateBoard() {
         }
       });
     });
+    // boardCell.addEventListener('click', boardCellClick);
     webBoard1.appendChild(boardCell);
   });
   board2.board.forEach((cell) => {
@@ -42,7 +48,7 @@ export default function generateBoard() {
       }
     }
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
-    boardCell.classList = 'cell';
+    boardCell.classList = 'cell2';
     webBoard2.appendChild(boardCell);
     boardCell.addEventListener('click', boardCellClick);
   });

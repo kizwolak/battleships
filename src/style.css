@@ -65,7 +65,7 @@ h1 {
     align-items: center;
     height: 80vh;
     width: 100vw;
-    margin-top: 5em;
+    margin-top: 3.5em;
 }
 
 .board1, .board2 {
@@ -93,7 +93,18 @@ h1 {
     font-size: 3em;
 }
 
-.cell {
+.board1Ships, .board2Ships {
+    font-size: 2em;
+    margin-bottom: 1.5em;
+    background-color: transparent;
+}
+
+.board1Ships > *:hover, .board2Ships > *:hover {
+    color: green;
+    font-weight: bold;
+}
+
+.cell1, .cell2 {
     border: 1px solid black;
     width: 4em;
     height: 4em;
@@ -114,7 +125,7 @@ h1 {
     overflow: hidden;
 }
 
-.cell:hover {
+.cell1:hover, .cell2:hover {
     transition: 0.4s;
     background-color: #fe75fe;
 }
