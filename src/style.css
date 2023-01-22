@@ -78,6 +78,17 @@ h1 {
     height: 20vw;
 }
 
+.board1container.activated {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.player1Name, .player2Name {
+    font-size: 3em;
+}
+
 .cell {
     border: 1px solid black;
     width: 4em;
@@ -94,6 +105,9 @@ h1 {
     height: 4em;
     color: transparent;
     background-color: #ff124f;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .cell:hover {

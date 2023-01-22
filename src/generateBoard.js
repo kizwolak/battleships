@@ -3,12 +3,14 @@ import gameBoard from './gameBoard.js';
 export default function generateBoard() {
   const title = document.querySelector('.title');
   const newGameButton = document.querySelector('.newGameButton');
+  const board1Container = document.querySelector('.board1Container');
+  const board2Container = document.querySelector('.board2Container');
   const webBoard1 = document.querySelector('.board1');
   const webBoard2 = document.querySelector('.board2');
   title.classList.add('deactivated');
   newGameButton.classList.add('deactivated');
-  webBoard1.classList.add('activated');
-  webBoard2.classList.add('activated');
+  board1Container.classList = ('board1container activated');
+  board2Container.classList = ('board1container activated');
   const board1 = gameBoard();
   board1.place([1, 2]);
   board1.belongsToPlayer = true;
