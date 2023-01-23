@@ -1,4 +1,3 @@
-import generateBoard from './generateBoard.js';
 import addShipToBoard from './addShipToBoard.js';
 
 export default function placeShips(board) {
@@ -31,6 +30,8 @@ export default function placeShips(board) {
     element.addEventListener('click', async (e) => {
       const response = await addShipToBoard(e);
       console.log(response);
+      board.place(response);
+      console.log(board.ships);
     });
   });
   player2Ships.forEach((element) => {
