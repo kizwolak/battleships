@@ -5,6 +5,12 @@ export default async function addShipToBoard(e) {
   let firstToBeAnalysed = 0;
   let secondToBeAnalysed = 1;
   e.target.style.color = 'yellow';
+  const checkMarkDiv = document.createElement('div');
+  checkMarkDiv.textContent = '✔️';
+  const crossMarkDiv = document.createElement('div');
+  crossMarkDiv.textContent = '❌';
+  e.target.appendChild(checkMarkDiv);
+  e.target.appendChild(crossMarkDiv);
   return new Promise((resolve, reject) => {
     if (e.target.textContent.includes('2')) {
       numberOfCells = 2;
@@ -17,21 +23,14 @@ export default async function addShipToBoard(e) {
     }
     const allP1Cells = document.querySelectorAll('.cell1');
     function coordinates(f) {
-      console.log(arrayOfCoords.slice(firstToBeAnalysed, secondToBeAnalysed));
       const toBeAdded = JSON.parse(`[${f.target.textContent}]`);
       if (arrayOfCoords.length === 1) {
         const toCompare = arrayOfCoords.slice(firstToBeAnalysed, secondToBeAnalysed);
-        console.log(`toCompare: ${toCompare[0]}`);
-        console.log(`toBeAdded: ${toBeAdded}`);
-        console.log(`firstToBeAnalysed: ${firstToBeAnalysed}`);
-        console.log(`secondToBeAnalysed: ${secondToBeAnalysed}`);
         if (toCompare[0][0] - toBeAdded[0] > 1 || toCompare[0][0] - toBeAdded[0] < -1 || toCompare[0][1] - toBeAdded[1] > 1 || toCompare[0][1] - toBeAdded[1] < -1 || (toCompare[0][0] - toBeAdded[0] == -1 && toCompare[0][1] - toBeAdded[1] === 1) || (toCompare[0][0] - toBeAdded[0] === 1 && toCompare[0][1] - toBeAdded[1] === 1) || (toCompare[0][0] - toBeAdded[0] === -1 && toCompare[0][1] - toBeAdded[1] === -1) || (toCompare[0][0] - toBeAdded[0] === 1 && toCompare[0][1] - toBeAdded[1] === -1)) {
-          console.log('error works!');
           return;
         }
         firstToBeAnalysed += 1;
         secondToBeAnalysed += 1;
-        console.log(toCompare);
       } else if (arrayOfCoords.length > 1) {
         const toCompare1 = arrayOfCoords.slice(firstToBeAnalysed, secondToBeAnalysed);
         const toCompare0 = arrayOfCoords.slice(0, 1);
@@ -40,7 +39,6 @@ export default async function addShipToBoard(e) {
         } if ((toCompare0[0][0] - toBeAdded[0] >= 1 && toCompare0[0][1] - toBeAdded[0] >= 1) || (toCompare0[0][0] - toBeAdded[0] <= -1 && toCompare0[0][1] - toBeAdded[1] <= -1) || (toCompare0[0][0] - toBeAdded[0] >= 1 && toCompare0[0][1] - toBeAdded[1] <= -1) || (toCompare0[0][0] - toBeAdded[0] <= -1 && toCompare0[0][1] - toBeAdded[1] >= 1)) { return; }
         firstToBeAnalysed += 1;
         secondToBeAnalysed += 1;
-        console.log(`increased First: ${firstToBeAnalysed}`);
       }
       f.target.classList = 'cellTakenByPlayer';
       arrayOfCoords.push(toBeAdded);
@@ -52,6 +50,20 @@ export default async function addShipToBoard(e) {
         resolve(arrayOfCoords);
       }
     }
+    crossMarkDiv.addEventListener('click', () => {
+      const cellsTaken = document.querySelectorAll('.cellTakenByPlayer');
+      cellsTaken.forEach((cell) => {
+        cell.classList.remove('cellTakenByPlayer');
+        cell.classList.add('cell1');
+      });
+      const allBoard1Cells = document.querySelectorAll('cell1');
+      allBoard1Cells.forEach((cell) => {
+        cell.addEventListener('click', coordinates);
+      });
+      e.target.removeChild(checkMarkDiv);
+      e.target.removeChild(crossMarkDiv);
+      reject();
+    });
     allP1Cells.forEach((cell) => {
       cell.addEventListener('click', coordinates);
     });
