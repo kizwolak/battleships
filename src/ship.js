@@ -1,6 +1,7 @@
-export default function Ship(...coordinates) {
+export default function Ship(name, ...coordinates) {
   const { length } = coordinates.length;
   return {
+    name,
     hits: 0,
     isSunkenProperty: false,
     hit(hits) {
