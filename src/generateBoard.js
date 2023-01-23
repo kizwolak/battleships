@@ -52,5 +52,6 @@ export default function generateBoard() {
     webBoard2.appendChild(boardCell);
     boardCell.addEventListener('click', boardCellClick);
   });
-  placeShips();
+  const coordsForNewShip = placeShips(board1);
+  console.log(coordsForNewShip);
 }

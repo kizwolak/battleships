@@ -1,7 +1,7 @@
 import generateBoard from './generateBoard.js';
 import addShipToBoard from './addShipToBoard.js';
 
-export default function placeShips() {
+export default function placeShips(board) {
   const board1Ships = document.querySelector('.board1Ships');
   const board2Ships = document.querySelector('.board2Ships');
   const carrier1 = document.createElement('div');
@@ -28,7 +28,10 @@ export default function placeShips() {
   const player2Ships = [carrier2, battleship2, cruiser2, submarine2, destroyer2];
   player1Ships.forEach((element) => {
     board1Ships.appendChild(element);
-    element.addEventListener('click', addShipToBoard);
+    element.addEventListener('click', async (e) => {
+      const response = await addShipToBoard(e);
+      console.log(response);
+    });
   });
   player2Ships.forEach((element) => {
     board2Ships.appendChild(element);
