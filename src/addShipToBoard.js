@@ -35,14 +35,9 @@ export default async function addShipToBoard(e) {
       } else if (arrayOfCoords.length > 1) {
         const toCompare1 = arrayOfCoords.slice(firstToBeAnalysed, secondToBeAnalysed);
         const toCompare0 = arrayOfCoords.slice(0, 1);
-        if ((toCompare1[0][0] - toBeAdded[0] !== 0 && toCompare1[0][1] - toBeAdded[1] !== 0) || ((toCompare1[0][0] - toBeAdded[0] >= 1 && toCompare[0][1] - toBeAdded[1] >= 1) || (toCompare1[0][0] - toBeAdded[0] <= -1 && toCompare1[0[1] - toBeAdded[1] <= -1]) || (toCompare1[0][0] - toBeAdded[0] >= 1 && toCompare[0][1] - toBeAdded[1] <= -1) || (toCompare1[0][0] - toBeAdded[0] <= -1 && toCompare[0][1] - toBeAdded[1] >= 1))) {
-          console.log('error works!');
-          console.log(`toCompare: ${toCompare[0]}`);
-          console.log(`toBeAdded: ${toBeAdded}`);
-          console.log(`firstToBeAnalysed: ${firstToBeAnalysed}`);
-          console.log(`secondToBeAnalysed: ${secondToBeAnalysed}`);
+        if ((toCompare1[0][0] - toBeAdded[0] !== 0 && toCompare1[0][1] - toBeAdded[1] !== 0) || ((toCompare1[0][0] - toBeAdded[0] >= 1 && toCompare1[0][1] - toBeAdded[1] >= 1) || (toCompare1[0][0] - toBeAdded[0] <= -1 && toCompare1[0[1] - toBeAdded[1] <= -1]) || (toCompare1[0][0] - toBeAdded[0] >= 1 && toCompare1[0][1] - toBeAdded[1] <= -1) || (toCompare1[0][0] - toBeAdded[0] <= -1 && toCompare1[0][1] - toBeAdded[1] >= 1))) {
           return;
-        }
+        } if ((toCompare0[0][0] - toBeAdded[0] >= 1 && toCompare0[0][1] - toBeAdded[0] >= 1) || (toCompare0[0][0] - toBeAdded[0] <= -1 && toCompare0[0][1] - toBeAdded[1] <= -1) || (toCompare0[0][0] - toBeAdded[0] >= 1 && toCompare0[0][1] - toBeAdded[1] <= -1) || (toCompare0[0][0] - toBeAdded[0] <= -1 && toCompare0[0][1] - toBeAdded[1] >= 1)) { return; }
         firstToBeAnalysed += 1;
         secondToBeAnalysed += 1;
         console.log(`increased First: ${firstToBeAnalysed}`);
