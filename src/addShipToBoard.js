@@ -2,6 +2,7 @@ export default async function addShipToBoard(e) {
   const arrayOfCoords = [];
   let numberOfCells = 0;
   let counter = 0;
+  e.target.style.color = 'yellow';
   return new Promise((resolve, reject) => {
     if (e.target.textContent.includes('2')) {
       numberOfCells = 2;
@@ -14,13 +15,11 @@ export default async function addShipToBoard(e) {
     }
     const allP1Cells = document.querySelectorAll('.cell1');
     function coordinates(f) {
+      f.target.classList = 'cellTakenByPlayer';
       const toBeAdded = JSON.parse(`[${f.target.textContent}]`);
       arrayOfCoords.push(toBeAdded);
       counter += 1;
-      console.log(numberOfCells);
-      console.log(counter);
       if (numberOfCells === counter) {
-        console.log(arrayOfCoords);
         allP1Cells.forEach((cell) => {
           cell.removeEventListener('click', coordinates);
         });
