@@ -47,10 +47,16 @@ export default async function addShipToBoard(e) {
         allP1Cells.forEach((cell) => {
           cell.removeEventListener('click', coordinates);
         });
-        resolve(arrayOfCoords);
+        alert('Press the green check mark in order to confirm your choice.');
+        checkMarkDiv.addEventListener('click', () => {
+          e.target.removeChild(checkMarkDiv);
+          e.target.removeChild(crossMarkDiv);
+          resolve(arrayOfCoords);
+        });
       }
     }
     crossMarkDiv.addEventListener('click', () => {
+      e.target.style.color = '';
       const cellsTaken = document.querySelectorAll('.cellTakenByPlayer');
       cellsTaken.forEach((cell) => {
         cell.classList.remove('cellTakenByPlayer');
