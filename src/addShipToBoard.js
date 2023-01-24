@@ -27,20 +27,26 @@ export default async function addShipToBoard(e) {
     }
     const allP1Cells = document.querySelectorAll('.cell1');
     function coordinates(f) {
+      const toCompare1 = arrayOfCoords.slice(1, 2);
+      const toCompare0 = arrayOfCoords.slice(0, 1);
       const toBeAdded = JSON.parse(`[${f.target.textContent}]`);
       if (arrayOfCoords.length === 1) {
-        const toCompare = arrayOfCoords.slice(firstToBeAnalysed, secondToBeAnalysed);
-        if (toCompare[0][0] - toBeAdded[0] > 1 || toCompare[0][0] - toBeAdded[0] < -1 || toCompare[0][1] - toBeAdded[1] > 1 || toCompare[0][1] - toBeAdded[1] < -1 || (toCompare[0][0] - toBeAdded[0] == -1 && toCompare[0][1] - toBeAdded[1] === 1) || (toCompare[0][0] - toBeAdded[0] === 1 && toCompare[0][1] - toBeAdded[1] === 1) || (toCompare[0][0] - toBeAdded[0] === -1 && toCompare[0][1] - toBeAdded[1] === -1) || (toCompare[0][0] - toBeAdded[0] === 1 && toCompare[0][1] - toBeAdded[1] === -1)) {
+        if ((toCompare0[0][0] - toBeAdded[0] === 1 || toCompare0[0][0] - toBeAdded[0] === -1) && (toCompare0[0][1] - toBeAdded[1] !== 0)) {
+          return;
+        }
+        if ((toCompare0[0][0] - toBeAdded[0] !== 0) && (toCompare0[0][1] - toBeAdded[1] === 1 && toCompare0[0][1] - toBeAdded[1] === 1)) {
           return;
         }
         firstToBeAnalysed += 1;
         secondToBeAnalysed += 1;
       } else if (arrayOfCoords.length > 1) {
-        const toCompare1 = arrayOfCoords.slice(firstToBeAnalysed, secondToBeAnalysed);
-        const toCompare0 = arrayOfCoords.slice(0, 1);
-        if ((toCompare1[0][0] - toBeAdded[0] !== 0 && toCompare1[0][1] - toBeAdded[1] !== 0) || ((toCompare1[0][0] - toBeAdded[0] >= 1 && toCompare1[0][1] - toBeAdded[1] >= 1) || (toCompare1[0][0] - toBeAdded[0] <= -1 && toCompare1[0[1] - toBeAdded[1] <= -1]) || (toCompare1[0][0] - toBeAdded[0] >= 1 && toCompare1[0][1] - toBeAdded[1] <= -1) || (toCompare1[0][0] - toBeAdded[0] <= -1 && toCompare1[0][1] - toBeAdded[1] >= 1))) {
-          return;
-        } if ((toCompare0[0][0] - toBeAdded[0] >= 1 && toCompare0[0][1] - toBeAdded[0] >= 1) || (toCompare0[0][0] - toBeAdded[0] <= -1 && toCompare0[0][1] - toBeAdded[1] <= -1) || (toCompare0[0][0] - toBeAdded[0] >= 1 && toCompare0[0][1] - toBeAdded[1] <= -1) || (toCompare0[0][0] - toBeAdded[0] <= -1 && toCompare0[0][1] - toBeAdded[1] >= 1)) { return; }
+        const toCompare2 = arrayOfCoords.slice(firstToBeAnalysed, secondToBeAnalysed);
+        if ((toCompare0[0][0] - toCompare1[0][0] === 1 || toCompare0[0][0] - toCompare1[0][0] === -1) && (toCompare0[0][1] - toCompare1[0][1] === 0 && toCompare0[0][1] - toCompare1[0][1] === 0)) {
+          if (toCompare2[0][1] - toBeAdded[1] >= 1 || toCompare2[0][1] - toBeAdded[1] <= 1 || toCompare2[0][0] - toBeAdded[0] > 1 || toCompare2[0][0] - toBeAdded[0] < -1) return;
+        }
+        if (toCompare0[0][1] - toCompare1[1] === 1 || toCompare0[0][1] - toCompare1[1] === -1) {
+          if (toCompare0[0][0] - toBeAdded[0] > 2 || toCompare0[0][0] - toBeAdded[0] < 2) return;
+        }
         firstToBeAnalysed += 1;
         secondToBeAnalysed += 1;
       }
