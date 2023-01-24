@@ -96,19 +96,9 @@ export default async function addShipToBoardAI(e) {
   }
   while (counter !== numberOfCells) {
     number1 = numberGenerator(0, 9, []);
-    if (arrayOfCoords.length > 1) {
-      const toCompare1 = arrayOfCoords.slice(1, 2);
-      const toCompare0 = arrayOfCoords.slice(0, 1);
-      if ((toCompare0[0][0] - toCompare1[0][0] === 1 || toCompare0[0][0] - toCompare1[0][0] === -1)) {
-        number1 = numberGenerator(toCompare0[0][0], undefined, []);
-        if ((toCompare0[0][1] - toCompare1[0][1] === 1 || toCompare0[0][1] - toCompare1[0][1] === -1)) {
-          number1 = numberGenerator(undefined, toCompare0[0][1], []);
-        }
-      }
-      coordsFilter(number1);
-      console.log(arrayOfCoords);
-      console.log(number1);
-    }
+    coordsFilter(number1);
+    console.log(arrayOfCoords);
+    console.log(number1);
   }
   return new Promise((resolve) => {
     if (numberOfCells === counter) {
