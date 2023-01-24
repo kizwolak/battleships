@@ -9,6 +9,11 @@ export default async function addShipToBoard(e) {
   crossMarkDiv.textContent = '❌';
   e.target.appendChild(checkMarkDiv);
   e.target.appendChild(crossMarkDiv);
+  function isArrayInArray(arr, item) {
+    const itemAsString = JSON.stringify(item);
+    const contains = arr.some((ele) => JSON.stringify(ele) === itemAsString);
+    return contains;
+  }
   return new Promise((resolve, reject) => {
     if (e.target.textContent.includes('2')) {
       numberOfCells = 2;
@@ -28,8 +33,15 @@ export default async function addShipToBoard(e) {
       const toCompare1 = arrayOfCoords.slice(1, 2);
       const toCompare0 = arrayOfCoords.slice(0, 1);
       const toBeAdded = JSON.parse(`[${f.target.textContent}]`);
+      console.log(`arrayOfCoords = ${arrayOfCoords}`);
+      console.log(arrayOfCoords);
+      console.log(JSON.stringify(toBeAdded));
+      if (isArrayInArray(arrayOfCoords, toBeAdded)) return;
       if (arrayOfCoords.length === 1) {
         if ((toCompare0[0][0] - toBeAdded[0] === 1 || toCompare0[0][0] - toBeAdded[0] === -1) && (toCompare0[0][1] - toBeAdded[1] !== 0)) {
+          return;
+        }
+        if ((toCompare0[0][0] - toBeAdded[0] > 1) || (toCompare0[0][0] - toBeAdded[0] < -1) || (toCompare0[0][1] - toBeAdded[1] > 1) || (toCompare0[0][1] - toBeAdded[1] < -1)) {
           return;
         }
         if ((toCompare0[0][0] - toBeAdded[0] !== 0) && (toCompare0[0][1] - toBeAdded[1] === 1 && toCompare0[0][1] - toBeAdded[1] === 1)) {

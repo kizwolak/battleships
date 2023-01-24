@@ -1,8 +1,13 @@
-export default function numberGenerator(min, max, missedAttacks) {
-  if (missedAttacks.includes(JSON.stringify([min, max]))) numberGenerator(min, max, missedAttacks);
+export default function numberGenerator(vertical, horizontal, missedAttacks) {
+  let min = 0;
+  let max = 9;
   min = Math.ceil(min);
   max = Math.floor(max);
   const firstNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   const secondNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  return [firstNumber, secondNumber];
+  if (vertical !== undefined) {
+    return [vertical, secondNumber];
+  } if (horizontal !== undefined) {
+    return [firstNumber, horizontal];
+  } return [firstNumber, secondNumber];
 }
