@@ -1,7 +1,7 @@
-import addShipToBoard from './addShipToBoard.js';
+import addShipToBoardAI from './addShipToBoardAI.js';
 
-export default function placeShips(board) {
-  const board1Ships = document.querySelector('.board1Ships');
+export default function placeShipsAI(board) {
+  const board2Ships = document.querySelector('.board2Ships');
   const carrier1 = document.createElement('div');
   carrier1.textContent = 'Carrier (5 cells)';
   const battleship1 = document.createElement('div');
@@ -12,7 +12,6 @@ export default function placeShips(board) {
   submarine1.textContent = 'Submarine (3 cells)';
   const destroyer1 = document.createElement('div');
   destroyer1.textContent = 'Destroyer (2 cells)';
-  const player1Ships = [carrier1, battleship1, cruiser1, submarine1, destroyer1];
   const carrier2 = document.createElement('div');
   carrier2.textContent = 'Carrier (5 cells)';
   const battleship2 = document.createElement('div');
@@ -25,18 +24,13 @@ export default function placeShips(board) {
   destroyer2.textContent = 'Destroyer (2 cells)';
   const player2Ships = [carrier2, battleship2, cruiser2, submarine2, destroyer2];
   async function getCoordsForShip(e) {
-    const response = await addShipToBoard(e);
-    console.log(response);
+    const response = await addShipToBoardAI(e);
     board.place(response);
     console.log(board.ships);
-    e.target.removeEventListener('click', getCoordsForShip);
-    e.target.style.color = 'green';
+    e.removeEventListener('click', getCoordsForShip);
+    e.style.color = 'green';
   }
-  player1Ships.forEach((element) => {
-    board1Ships.appendChild(element);
-    element.addEventListener('click', getCoordsForShip);
+  player2Ships.forEach((element) => {
+    getCoordsForShip(element);
   });
-  if (board.ships.length === 5) {
-    console.log('length check works!');
-  }
 }

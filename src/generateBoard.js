@@ -1,5 +1,6 @@
 import gameBoard from './gameBoard.js';
 import placeShips from './placeShips.js';
+import placeShipsAI from './placeShipsAI.js';
 
 export default function generateBoard() {
   const title = document.querySelector('.title');
@@ -52,6 +53,6 @@ export default function generateBoard() {
     webBoard2.appendChild(boardCell);
     boardCell.addEventListener('click', boardCellClick);
   });
-  const coordsForNewShip = placeShips(board1);
-  console.log(coordsForNewShip);
+  placeShips(board1);
+  placeShipsAI(board2);
 }

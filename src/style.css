@@ -114,7 +114,47 @@ h1 {
     white-space: nowrap;  
 }
 
-.cellTakenByPlayer {
+.cellTakenByPlayer3Cruiser {
+    border: 1px solid black;
+    width: 4em;
+    height: 4em;
+    color: transparent;
+    background-color: #ff124f;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.cellTakenByPlayer2 {
+    border: 1px solid black;
+    width: 4em;
+    height: 4em;
+    color: transparent;
+    background-color: #ff124f;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.cellTakenByPlayer3 {
+    border: 1px solid black;
+    width: 4em;
+    height: 4em;
+    color: transparent;
+    background-color: #ff124f;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.cellTakenByPlayer4 {
+    border: 1px solid black;
+    width: 4em;
+    height: 4em;
+    color: transparent;
+    background-color: #ff124f;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.cellTakenByPlayer5 {
     border: 1px solid black;
     width: 4em;
     height: 4em;

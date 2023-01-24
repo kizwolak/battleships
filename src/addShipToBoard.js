@@ -21,6 +21,10 @@ export default async function addShipToBoard(e) {
     } else if (e.target.textContent.includes('5')) {
       numberOfCells = 5;
     }
+    let classToBeAdded = `cellTakenByPlayer${numberOfCells}`;
+    if (e.target.textContent.includes('Cruiser')) {
+      classToBeAdded = `cellTakenByPlayer${numberOfCells}Cruiser`;
+    }
     const allP1Cells = document.querySelectorAll('.cell1');
     function coordinates(f) {
       const toBeAdded = JSON.parse(`[${f.target.textContent}]`);
@@ -40,7 +44,7 @@ export default async function addShipToBoard(e) {
         firstToBeAnalysed += 1;
         secondToBeAnalysed += 1;
       }
-      f.target.classList = 'cellTakenByPlayer';
+      f.target.classList = classToBeAdded;
       arrayOfCoords.push(toBeAdded);
       counter += 1;
       if (numberOfCells === counter) {
@@ -57,9 +61,10 @@ export default async function addShipToBoard(e) {
     }
     crossMarkDiv.addEventListener('click', () => {
       e.target.style.color = '';
-      const cellsTaken = document.querySelectorAll('.cellTakenByPlayer');
+      console.log(`.${classToBeAdded}`);
+      const cellsTaken = document.querySelectorAll(`.${classToBeAdded}`);
       cellsTaken.forEach((cell) => {
-        cell.classList.remove('cellTakenByPlayer');
+        cell.classList.remove(`${classToBeAdded}`);
         cell.classList.add('cell1');
       });
       const allBoard1Cells = document.querySelectorAll('cell1');
