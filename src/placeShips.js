@@ -24,6 +24,7 @@ export default function placeShips(board) {
   const destroyer2 = document.createElement('div');
   destroyer2.textContent = 'Destroyer (2 cells)';
   const player2Ships = [carrier2, battleship2, cruiser2, submarine2, destroyer2];
+  const boardShips = board.ships;
   async function getCoordsForShip(e) {
     const response = await addShipToBoard(e);
     console.log(response);
@@ -31,12 +32,12 @@ export default function placeShips(board) {
     console.log(board.ships);
     e.target.removeEventListener('click', getCoordsForShip);
     e.target.style.color = 'green';
+    if (boardShips.length === 5) {
+      console.log('length check works!');
+    }
   }
   player1Ships.forEach((element) => {
     board1Ships.appendChild(element);
     element.addEventListener('click', getCoordsForShip);
   });
-  if (board.ships.length === 5) {
-    console.log('length check works!');
-  }
 }
