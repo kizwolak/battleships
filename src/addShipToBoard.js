@@ -2,8 +2,6 @@ export default async function addShipToBoard(e) {
   const arrayOfCoords = [];
   let numberOfCells = 0;
   let counter = 0;
-  let firstToBeAnalysed = 0;
-  let secondToBeAnalysed = 1;
   e.target.style.color = 'yellow';
   const checkMarkDiv = document.createElement('div');
   checkMarkDiv.textContent = '✔️';
@@ -37,8 +35,6 @@ export default async function addShipToBoard(e) {
         if ((toCompare0[0][0] - toBeAdded[0] !== 0) && (toCompare0[0][1] - toBeAdded[1] === 1 && toCompare0[0][1] - toBeAdded[1] === 1)) {
           return;
         }
-        firstToBeAnalysed += 1;
-        secondToBeAnalysed += 1;
       } else if (arrayOfCoords.length > 1) {
         const toCompare2 = arrayOfCoords.slice((arrayOfCoords.length - 1), (arrayOfCoords.length - 0));
         if ((toCompare0[0][0] - toCompare1[0][0] === 1 || toCompare0[0][0] - toCompare1[0][0] === -1)) {

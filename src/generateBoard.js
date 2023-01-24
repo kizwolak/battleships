@@ -55,4 +55,5 @@ export default function generateBoard() {
   });
   placeShips(board1);
   placeShipsAI(board2);
+  setTimeout(console.log(board2.ships), 2000);
 }

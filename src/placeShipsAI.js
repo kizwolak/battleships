@@ -26,9 +26,9 @@ export default function placeShipsAI(board) {
   async function getCoordsForShip(e) {
     const response = await addShipToBoardAI(e);
     board.place(response);
-    console.log(board.ships);
     e.removeEventListener('click', getCoordsForShip);
     e.style.color = 'green';
+    console.log(board.ships);
   }
   player2Ships.forEach((element) => {
     getCoordsForShip(element);
