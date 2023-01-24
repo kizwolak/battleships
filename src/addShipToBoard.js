@@ -54,18 +54,36 @@ export default async function addShipToBoard(e) {
                 return;
               }
             } if (toCompare0[0][0] - toCompare1[0][0] === -1) {
-              if (toCompare0[0][0] - toBeAdded[0] !== -1) {
+              if (toCompare0[0][0] - toBeAdded[0] !== 1) {
                 console.log(toCompare0);
                 console.log(toBeAdded);
                 console.log('trzeci if');
-
                 return;
               }
             }
           }
         }
-        if (toCompare0[0][1] - toCompare1[1] === 1 || toCompare0[0][1] - toCompare1[1] === -1) {
-          if (toCompare0[0][0] - toBeAdded[0] > 2 || toCompare0[0][0] - toBeAdded[0] < 2) return;
+        if ((toCompare0[0][1] - toCompare1[0][1] === 1 || toCompare0[0][1] - toCompare1[0][1] === -1)) {
+          if (toCompare2[0][0] - toBeAdded[0] >= 1 || toCompare2[0][0] - toBeAdded[0] <= -1) {
+            console.log('pierwszy if');
+            return;
+          } if (toCompare2[0][1] - toBeAdded[1] > 1 || toCompare2[0][1] - toBeAdded[1] < -1) {
+            console.log(`toCompare2: ${toCompare2}`);
+            console.log(`toBeAdded: ${toBeAdded}`);
+            if (toCompare0[0][1] - toCompare1[0][1] === 1) {
+              if (toBeAdded[1] - toCompare0[0][1] !== 1) {
+                console.log('drugi if');
+                return;
+              }
+            } if (toCompare0[0][1] - toCompare1[0][1] === -1) {
+              if (toCompare0[0][1] - toBeAdded[1] !== 1) {
+                console.log(toCompare0);
+                console.log(toBeAdded);
+                console.log('trzeci if');
+                return;
+              }
+            }
+          }
         }
       }
       f.target.classList = classToBeAdded;
