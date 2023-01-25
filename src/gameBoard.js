@@ -47,6 +47,7 @@ export default function gameBoard() {
             console.log('end!');
           } else {
             this.missedAttacks.push([first, second]);
+            console.log('miss!');
             toBeReturned = false;
           }
         });

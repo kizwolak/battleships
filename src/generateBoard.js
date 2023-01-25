@@ -40,13 +40,10 @@ export default function generateBoard() {
   board2.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     function boardCellClick() {
-      const cellText = boardCell.textContent;
-      const arrayFromCell = Array.from(cellText);
-      console.log(arrayFromCell);
-      const cellContents = boardCell.textContent;
+      const cellContents = `[${boardCell.textContent}]`;
       console.log(cellContents);
-      if (board2.receiveAttack(cellContents) === true) boardCell.classList = 'cellTakenByPlayer';
-      else if (board2.receiveAttack(cellContents) === false) {
+      if (board2.receiveAttack(JSON.parse(cellContents)) === true) boardCell.classList = 'cellTakenByPlayer';
+      else if (board2.receiveAttack(JSON.parse(cellContents)) === false) {
         boardCell.classList = 'empty';
         boardCell.removeEventListener('click', boardCellClick);
       }
