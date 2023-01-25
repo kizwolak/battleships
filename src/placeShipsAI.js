@@ -14,15 +14,16 @@ export default function placeShipsAI(board) {
   destroyer2.textContent = 'Destroyer (2 cells)';
   const player2Ships = [carrier2, battleship2, cruiser2, submarine2, destroyer2];
   async function getCoordsForShip(e) {
-    const response = await addShipToBoardAI(e);
+    const response = await addShipToBoardAI(e, takenCells);
+    response.forEach((cell) => takenCells.push(cell));
     board.place(response);
     e.removeEventListener('click', getCoordsForShip);
     e.style.color = 'green';
     console.log(board.ships);
   }
-  getCoordsForShip(carrier2);
+  // getCoordsForShip(carrier2);
   // getCoordsForShip(battleship2);
-  // getCoordsForShip(cruiser2);
-  // getCoordsForShip(submarine2);
-  // getCoordsForShip(destroyer2);
+  getCoordsForShip(cruiser2);
+  getCoordsForShip(submarine2);
+  getCoordsForShip(destroyer2);
 }
