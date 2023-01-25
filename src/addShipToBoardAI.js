@@ -4,7 +4,7 @@ import coinFlip from './coinFlip.js';
 export default async function addShipToBoardAI(e, array) {
   console.log(e.textContent);
   const takenCells = [];
-  const arrayOfCoords = [];
+  let arrayOfCoords = [];
   let numberOfCells = 0;
   let counter = 0;
   if (e.textContent.includes('2')) {
@@ -84,6 +84,12 @@ export default async function addShipToBoardAI(e, array) {
     takenCells.push(toBeAdded);
     counter += 1;
   }
+  arrayOfCoords.forEach((coord) => {
+    if (isArrayInArray(array, coord)) {
+      counter = 0;
+      arrayOfCoords = [];
+    }
+  });
   while (counter !== numberOfCells) {
     number1 = numberGenerator(0, 9, takenCells);
     coordsFilter(number1);

@@ -172,7 +172,10 @@ h1 {
 }
 
 .empty {
-    background-color: #29132e;
+    background-color: #33163a;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;  
 }
 
 button {

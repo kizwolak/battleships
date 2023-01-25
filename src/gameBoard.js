@@ -12,6 +12,11 @@ export default function gameBoard() {
     }
     return boardToReturn;
   }
+  function isArrayInArray(arr, item) {
+    const itemAsString = JSON.stringify(item);
+    const contains = arr.some((ele) => JSON.stringify(ele) === itemAsString);
+    return contains;
+  }
   return {
     belongsToPlayer: false,
     ships,
@@ -32,19 +37,18 @@ export default function gameBoard() {
       let toBeReturned;
       ships.forEach((ship) => {
         ship.location.forEach((location) => {
-          const stringifiedCoords = JSON.stringify(coordinates);
-          if (JSON.stringify(location) === stringifiedCoords) {
+          if (isArrayInArray(location, coordinates)) {
             ship.hit();
+            console.log('hit!');
             toBeReturned = true;
           }
-          if (ships.every(() => ship.isSunkenProperty === true)) {
+          if (isArrayInArray(location, coordinates)) {
             this.allShipsSunken = true;
             console.log('end!');
           } else {
             this.missedAttacks.push([first, second]);
             toBeReturned = false;
           }
-          return toBeReturned;
         });
       });
       return toBeReturned;
