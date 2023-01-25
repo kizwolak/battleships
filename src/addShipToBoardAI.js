@@ -28,7 +28,7 @@ export default async function addShipToBoardAI(e, array) {
     const random2 = coinFlip();
     const random3 = coinFlip();
     const originalNum = arrayOfCoords.slice(0, 1);
-    const toCompare = arrayOfCoords.slice(arrayOfCoords.length - 1, arrayOfCoords.length);
+    let toCompare = arrayOfCoords.slice(arrayOfCoords.length - 1, arrayOfCoords.length);
     if (arrayOfCoords.length === 1) {
       console.log(toCompare);
       console.log(`${toCompare[0][0]} ${toCompare[0][1]}`);
@@ -47,23 +47,39 @@ export default async function addShipToBoardAI(e, array) {
       }
     }
     if (arrayOfCoords.length > 1) {
-      if ((toCompare[0][0] - originalNum[0][0] === 1 || toCompare[0][0] - originalNum[0][0] === -1)) {
+      const secondOriginal = arrayOfCoords.slice(1, 2);
+      if ((secondOriginal[0][0] - originalNum[0][0] === 1 || secondOriginal[0][0] - originalNum[0][0] === -1)) {
+        if (toCompare[0][0] === 9 || toCompare[0][0] === 0) {
+          const toCompare1 = numberGenerator(0, 9, takenCells);
+          if (toCompare[0][0] === 0) {
+            toCompare = [0, toCompare1[0][1]];
+          } else { toCompare = [9, toCompare1[1]]; }
+        }
         if (random2 === 0) {
           toBeAdded = [(toCompare[0][0] - 1), toCompare[0][1]];
         } if (random2 === 1) {
           toBeAdded = [(toCompare[0][0] + 1), toCompare[0][1]];
         } if (isArrayInArray(takenCells, toBeAdded)) return;
+        if (toBeAdded[0] - originalNum[0][0] > 5 || toBeAdded - originalNum[0][0] < -5) return;
       }
-      if ((toCompare[0][1] - originalNum[0][1] === 1 || toCompare[0][1] - originalNum[0][1] === -1)) {
+      if ((secondOriginal[0][1] - originalNum[0][1] === 1 || secondOriginal[0][1] - originalNum[0][1] === -1)) {
+        if (toCompare[0][1] === 9 || toCompare[0][1] === 0) {
+          const toCompare1 = numberGenerator(0, 9, takenCells);
+          if (toCompare[0][1] === 0) {
+            toCompare = [toCompare1[0], 0];
+          } else { toCompare = [toCompare1[0], 9]; }
+        }
         if (random2 === 0) {
           toBeAdded = [toCompare[0][0], (toCompare[0][1] - 1)];
         } if (random2 === 1) {
           toBeAdded = [toCompare[0][0], (toCompare[0][1] + 1)];
         } if (isArrayInArray(takenCells, toBeAdded)) return;
+        if (toBeAdded[0] - originalNum[0][0] > 5 || toBeAdded - originalNum[0][0] < -5) return;
       }
     }
     if (toBeAdded[0] < -1 || toBeAdded[1] < -1 || toBeAdded[0] > 9 || toBeAdded[1] > 9) return;
     if (isArrayInArray(takenCells, toBeAdded)) return;
+    if (isArrayInArray(array, toBeAdded)) return;
     arrayOfCoords.push(toBeAdded);
     takenCells.push(toBeAdded);
     counter += 1;

@@ -22,8 +22,8 @@ export default function placeShipsAI(board) {
     console.log(board.ships);
   }
   // getCoordsForShip(carrier2);
-  // getCoordsForShip(battleship2);
-  getCoordsForShip(cruiser2);
-  getCoordsForShip(submarine2);
-  getCoordsForShip(destroyer2);
+  getCoordsForShip(battleship2);
+  // getCoordsForShip(cruiser2);
+  // getCoordsForShip(submarine2);
+  // getCoordsForShip(destroyer2);
 }
