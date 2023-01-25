@@ -1,6 +1,7 @@
 import addShipToBoardAI from './addShipToBoardAI.js';
 
 export default function placeShipsAI(board) {
+  const board2Ships = document.querySelector('.board2Ships');
   const takenCells = [];
   const carrier2 = document.createElement('div');
   carrier2.textContent = 'Carrier (5 cells)';
@@ -13,6 +14,9 @@ export default function placeShipsAI(board) {
   const destroyer2 = document.createElement('div');
   destroyer2.textContent = 'Destroyer (2 cells)';
   const player2Ships = [carrier2, battleship2, cruiser2, submarine2, destroyer2];
+  player2Ships.forEach((element) => {
+    board2Ships.appendChild(element);
+  });
   async function getCoordsForShip(e) {
     const response = await addShipToBoardAI(e, takenCells);
     response.forEach((cell) => takenCells.push(cell));

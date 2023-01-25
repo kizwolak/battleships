@@ -49,6 +49,7 @@ export default async function addShipToBoard(e) {
         }
       } else if (arrayOfCoords.length > 1) {
         const toCompare2 = arrayOfCoords.slice((arrayOfCoords.length - 1), (arrayOfCoords.length - 0));
+        // vertical check
         if ((toCompare0[0][0] - toCompare1[0][0] === 1 || toCompare0[0][0] - toCompare1[0][0] === -1)) {
           if (toCompare2[0][1] - toBeAdded[1] >= 1 || toCompare2[0][1] - toBeAdded[1] <= -1) {
             console.log('pierwszy if');
@@ -56,21 +57,9 @@ export default async function addShipToBoard(e) {
           } if (toCompare2[0][0] - toBeAdded[0] > 1 || toCompare2[0][0] - toBeAdded[0] < -1) {
             console.log(`toCompare2: ${toCompare2}`);
             console.log(`toBeAdded: ${toBeAdded}`);
-            if (toCompare0[0][0] - toCompare1[0][0] === 1) {
-              if (toBeAdded[0] - toCompare0[0][0] !== 1) {
-                console.log('drugi if');
-                return;
-              }
-            } if (toCompare0[0][0] - toCompare1[0][0] === -1) {
-              if (toCompare0[0][0] - toBeAdded[0] !== 1) {
-                console.log(toCompare0);
-                console.log(toBeAdded);
-                console.log('trzeci if');
-                return;
-              }
-            }
           }
         }
+        // horizontal check
         if ((toCompare0[0][1] - toCompare1[0][1] === 1 || toCompare0[0][1] - toCompare1[0][1] === -1)) {
           if (toCompare2[0][0] - toBeAdded[0] >= 1 || toCompare2[0][0] - toBeAdded[0] <= -1) {
             console.log('pierwszy if');
@@ -78,19 +67,6 @@ export default async function addShipToBoard(e) {
           } if (toCompare2[0][1] - toBeAdded[1] > 1 || toCompare2[0][1] - toBeAdded[1] < -1) {
             console.log(`toCompare2: ${toCompare2}`);
             console.log(`toBeAdded: ${toBeAdded}`);
-            if (toCompare0[0][1] - toCompare1[0][1] === 1) {
-              if (toBeAdded[1] - toCompare0[0][1] !== 1) {
-                console.log('drugi if');
-                return;
-              }
-            } if (toCompare0[0][1] - toCompare1[0][1] === -1) {
-              if (toCompare0[0][1] - toBeAdded[1] !== 1) {
-                console.log(toCompare0);
-                console.log(toBeAdded);
-                console.log('trzeci if');
-                return;
-              }
-            }
           }
         }
       }

@@ -97,6 +97,7 @@ h1 {
     font-size: 2em;
     margin-bottom: 1.5em;
     background-color: transparent;
+    font-weight: bold;
 }
 
 .board1Ships > *:hover, .board2Ships > *:hover {
