@@ -1,4 +1,5 @@
 import numberGenerator from './numberGenerator.js';
+import coinFlip from './coinFlip.js';
 
 export default async function addShipToBoardAI(e, array) {
   console.log(e.textContent);
@@ -22,77 +23,47 @@ export default async function addShipToBoardAI(e, array) {
   }
   let number1 = numberGenerator(0, 9, takenCells);
   function coordsFilter(number) {
-    console.log(arrayOfCoords);
-    console.log(number);
-    if (isArrayInArray(array, number)) return;
-    const toCompare1 = arrayOfCoords.slice(1, 2);
-    const toCompare0 = arrayOfCoords.slice(0, 1);
-    if (isArrayInArray(arrayOfCoords, number)) return;
-    const toBeAdded = number;
+    let toBeAdded = number;
+    const random1 = coinFlip();
+    const random2 = coinFlip();
+    const random3 = coinFlip();
+    const originalNum = arrayOfCoords.slice(0, 1);
+    const toCompare = arrayOfCoords.slice(arrayOfCoords.length - 1, arrayOfCoords.length);
     if (arrayOfCoords.length === 1) {
-      console.log(toCompare0);
-      if ((toCompare0[0][0] - toBeAdded[0] === 1 || toCompare0[0][0] - toBeAdded[0] === -1) && (toCompare0[0][1] - toBeAdded[1] !== 0)) {
-        number1 = numberGenerator(0, 9, takenCells);
-        return;
-      }
-      if ((toCompare0[0][0] - toBeAdded[0] > 1) || (toCompare0[0][0] - toBeAdded[0] < -1) || (toCompare0[0][1] - toBeAdded[1] > 1) || (toCompare0[0][1] - toBeAdded[1] < -1)) {
-        number1 = numberGenerator(0, 9, takenCells);
-        return;
-      }
-      if ((toCompare0[0][0] - toBeAdded[0] !== 0) && (toCompare0[0][1] - toBeAdded[1] === 1 && toCompare0[0][1] - toBeAdded[1] === 1)) {
-        number1 = numberGenerator(0, 9, takenCells);
-        return;
-      }
-    } else if (arrayOfCoords.length > 1) {
-      const toCompare2 = arrayOfCoords.slice((arrayOfCoords.length - 1), (arrayOfCoords.length));
-      // vertical check
-      if ((toCompare0[0][0] - toCompare1[0][0] === 1 || toCompare0[0][0] - toCompare1[0][0] === -1)) {
-        number1 = numberGenerator(0, 9, takenCells);
-        return;
-      } if (toCompare2[0][0] - toBeAdded[0] > 1 || toCompare2[0][0] - toBeAdded[0] < -1) {
-        console.log(`toCompare2: ${toCompare2}`);
-        console.log(`toBeAdded: ${toBeAdded}`);
-        if (toCompare0[0][0] - toCompare1[0][0] === 1) {
-          if (toBeAdded[0] - toCompare0[0][0] !== 1) {
-            number1 = numberGenerator(0, 9, takenCells);
-            return;
-          }
-        } if (toCompare0[0][0] - toCompare1[0][0] === -1) {
-          if (toCompare0[0][0] - toBeAdded[0] !== 1) {
-            console.log(toCompare0);
-            console.log(toBeAdded);
-            number1 = numberGenerator(0, 9, takenCells);
-            return;
-          }
+      console.log(toCompare);
+      console.log(`${toCompare[0][0]} ${toCompare[0][1]}`);
+      if (random1 === 0) {
+        if (random3 === 0) {
+          toBeAdded = [(toCompare[0][0] - 1), toCompare[0][1]];
+        } if (random3 === 1) {
+          toBeAdded = [(toCompare[0][0] + 1), toCompare[0][1]];
         }
-      }
-      // horizontal check
-      if ((toCompare0[0][1] - toCompare1[0][1] === 1 || toCompare0[0][1] - toCompare1[0][1] === -1)) {
-        if (toCompare2[0][0] - toBeAdded[0] >= 1 || toCompare2[0][0] - toBeAdded[0] <= -1) {
-          console.log('pierwszy if');
-          number1 = numberGenerator(0, 9, takenCells);
-          return;
-        } if (toCompare2[0][1] - toBeAdded[1] > 1 || toCompare2[0][1] - toBeAdded[1] < -1) {
-          console.log(`toCompare2: ${toCompare2}`);
-          console.log(`toBeAdded: ${toBeAdded}`);
-          if (toCompare0[0][1] - toCompare1[0][1] === 1) {
-            if (toBeAdded[1] - toCompare0[0][1] !== 1) {
-              console.log('drugi if');
-              number1 = numberGenerator(0, 9, takenCells);
-              return;
-            }
-          } if (toCompare0[0][1] - toCompare1[0][1] === -1) {
-            if (toCompare0[0][1] - toBeAdded[1] !== 1) {
-              console.log(toCompare0);
-              console.log(toBeAdded);
-              console.log('trzeci if');
-              number1 = numberGenerator(0, 9, takenCells);
-              return;
-            }
-          }
+      } if (random1 === 1) {
+        if (random3 === 0) {
+          toBeAdded = [toCompare[0][0], toCompare[0][1] - 1];
+        } if (random3 === 1) {
+          toBeAdded = [toCompare[0][0], toCompare[0][1] + 1];
         }
       }
     }
+    if (arrayOfCoords.length > 1) {
+      if ((toCompare[0][0] - originalNum[0][0] === 1 || toCompare[0][0] - originalNum[0][0] === -1)) {
+        if (random2 === 0) {
+          toBeAdded = [(toCompare[0][0] - 1), toCompare[0][1]];
+        } if (random2 === 1) {
+          toBeAdded = [(toCompare[0][0] + 1), toCompare[0][1]];
+        } if (isArrayInArray(takenCells, toBeAdded)) return;
+      }
+      if ((toCompare[0][1] - originalNum[0][1] === 1 || toCompare[0][1] - originalNum[0][1] === -1)) {
+        if (random2 === 0) {
+          toBeAdded = [toCompare[0][0], (toCompare[0][1] - 1)];
+        } if (random2 === 1) {
+          toBeAdded = [toCompare[0][0], (toCompare[0][1] + 1)];
+        } if (isArrayInArray(takenCells, toBeAdded)) return;
+      }
+    }
+    if (toBeAdded[0] < -1 || toBeAdded[1] < -1 || toBeAdded[0] > 9 || toBeAdded[1] > 9) return;
+    if (isArrayInArray(takenCells, toBeAdded)) return;
     arrayOfCoords.push(toBeAdded);
     takenCells.push(toBeAdded);
     counter += 1;
