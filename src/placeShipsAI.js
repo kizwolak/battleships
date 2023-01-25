@@ -21,9 +21,9 @@ export default function placeShipsAI(board) {
     e.style.color = 'green';
     console.log(board.ships);
   }
-  // getCoordsForShip(carrier2);
+  getCoordsForShip(carrier2);
   getCoordsForShip(battleship2);
-  // getCoordsForShip(cruiser2);
-  // getCoordsForShip(submarine2);
-  // getCoordsForShip(destroyer2);
+  getCoordsForShip(cruiser2);
+  getCoordsForShip(submarine2);
+  getCoordsForShip(destroyer2);
 }
