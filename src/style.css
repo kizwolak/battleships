@@ -126,6 +126,17 @@ h1 {
     overflow: hidden;
 }
 
+.cellTakenByComputer {
+    border: 1px solid black;
+    width: 4em;
+    height: 4em;
+    color: transparent;
+    background-color: #edf84f;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .cellTakenByPlayer3Cruiser {
     border: 1px solid black;
     width: 4em;
@@ -184,9 +195,12 @@ h1 {
 
 .empty {
     background-color: #33163a;
+    width: 4em;
+    height: 4em;
     overflow: hidden;
     text-indent: 100%;
-    white-space: nowrap;  
+    white-space: nowrap;
+    border: 1px solid black;
 }
 
 button {

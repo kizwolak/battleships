@@ -8,7 +8,13 @@ export default function attackLogic(board1, board2) {
       if (JSON.stringify(ele) === itemAsString) return true;
       if (!(JSON.stringify(ele) === itemAsString)) counter += 1;
     });
+    if ((counter) => arr.length) return false;
     return counter;
+  }
+  function isArrayInArrayOriginal(arr, item) {
+    const itemAsString = JSON.stringify(item);
+    const contains = arr.some((ele) => JSON.stringify(ele) === itemAsString);
+    return contains;
   }
   const cpuAttacks = [];
   const board1Cells = document.querySelectorAll('.cell1');
@@ -30,22 +36,70 @@ export default function attackLogic(board1, board2) {
         if (ship.isSunkenProperty === true) sunkenCounter2 += 1;
         if (sunkenCounter2 === 5) alert('Human wins!');
       });
-      const randomCPUattack = numberGenerator(0, 9, cpuAttacks);
+      let randomCPUattack = numberGenerator(0, 9, cpuAttacks);
+      console.log(JSON.stringify(randomCPUattack));
+      console.log(JSON.stringify(randomCPUattack[0]));
+      if (isArrayInArray(cpuAttacks, randomCPUattack)) {
+        randomCPUattack = numberGenerator(0, 9, cpuAttacks);
+        console.log('contains: true');
+      }
       console.log(randomCPUattack);
-      console.log(board1.board);
+      const cellTakenByPlayer2 = document.getElementsByClassName('cellTakenByPlayer2');
+      const test = (JSON.parse(`[${cellTakenByPlayer2[0].innerHTML}]`));
+      console.log(test);
+      function classChecker() {
+        let toBeReturned;
+        const cellTakenByPlayer2 = document.getElementsByClassName('cellTakenByPlayer2');
+        const cellTakenByPlayer3 = document.getElementsByClassName('cellTakenByPlayer3');
+        const cellTakenByPlayer3Cruiser = document.getElementsByClassName('cellTakenByPlayer3Cruiser');
+        const cellTakenByPlayer4 = document.getElementsByClassName('cellTakenByPlayer4');
+        const cellTakenByPlayer5 = document.getElementsByClassName('cellTakenByPlayer5');
+        for (let i = 0; i < cellTakenByPlayer2.length; i++) {
+          if (cellTakenByPlayer2[i].textContent === JSON.stringify(randomCPUattack)) {
+            console.log(cellTakenByPlayer2[i].textContent);
+            toBeReturned = cellTakenByPlayer2[i];
+          }
+        }
+        for (let i = 0; i < cellTakenByPlayer3.length; i++) {
+          if (cellTakenByPlayer3[i].textContent === JSON.stringify(randomCPUattack)) {
+            toBeReturned = cellTakenByPlayer2[i];
+          }
+        }
+        for (let i = 0; i < cellTakenByPlayer3Cruiser.length; i++) {
+          if (cellTakenByPlayer3Cruiser[i].textContent === JSON.stringify(randomCPUattack)) {
+            toBeReturned = cellTakenByPlayer3Cruiser[i];
+          }
+        }
+        for (let i = 0; i < cellTakenByPlayer4.length; i++) {
+          if (cellTakenByPlayer4[i].textContent === JSON.stringify(randomCPUattack)) {
+            toBeReturned = cellTakenByPlayer4[i];
+          }
+        }
+        for (let i = 0; i < cellTakenByPlayer5.length; i++) {
+          if (cellTakenByPlayer5[i].textContent === JSON.stringify(randomCPUattack)) {
+            toBeReturned = cellTakenByPlayer5[i];
+          }
+        }
+        return toBeReturned;
+      }
+      console.log(randomCPUattack);
       const attackedCellIndex = isArrayInArray(board1.board, randomCPUattack);
       console.log(attackedCellIndex);
-      const attackedCell1 = document.getElementsByClassName(`cell1 ${attackedCellIndex}`);
+      const attackedCell1 = board1.board[attackedCellIndex];
       console.log(attackedCell1);
-      const cell1Contents = `[${attackedCell1[0].textContent}]`;
-      if (board1.receiveAttack(JSON.parse(cell1Contents)) === true) {
-        attackedCell1[0].classList = '';
-        attackedCell1[0].classList.remove('empty');
-        attackedCell1[0].classList.remove('cell2');
-        attackedCell1[0].classList.add('cellTakenByPlayer');
-      } else if (board1.receiveAttack(JSON.parse(cell1Contents)) === false) {
-        attackedCell1[0].classList = 'empty';
-        attackedCell1[0].removeEventListener('click', boardCellClick);
+      const cellToBeModified = classChecker();
+      console.log(`cellToBeModified: ${cellToBeModified}`);
+      // const cell1Contents = `[${attackedCell1.textContent}]`;
+      if (board1.receiveAttack(JSON.parse(`[${attackedCell1[0]}, ${attackedCell1[1]}]`)) === true) {
+        console.log('computer hit!');
+        cellToBeModified.classList = '';
+        cellToBeModified.classList.remove('empty');
+        cellToBeModified.classList.remove('cell2');
+        attackedCell1.classList.add('cellTakenByComputer');
+      } else if (board1.receiveAttack((`[${attackedCell1[0]}, ${attackedCell1[1]}]`)) === false) {
+        cpuAttacks.push(randomCPUattack);
+        cellToBeModified.classList = 'empty';
+        cellToBeModified.removeEventListener('click', boardCellClick);
       }
       let sunkenCounter1 = 0;
       board1.ships.forEach((ship) => {
