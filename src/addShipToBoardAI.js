@@ -82,7 +82,7 @@ export default async function addShipToBoardAI(e, array) {
       }
     }
     if (toBeAdded[0] === undefined || toBeAdded[0] === NaN || toBeAdded[1] === undefined || toBeAdded[1] === NaN) {
-      alert('NaN/undefined');
+      alert(`NaN/undefined: ${toBeAdded}`);
       toBeAdded = numberGenerator(0, 9, takenCells);
       arrayOfCoords = [];
       counter = 0;
@@ -90,7 +90,12 @@ export default async function addShipToBoardAI(e, array) {
     }
     if (toBeAdded[0] < -1 || toBeAdded[1] < -1 || toBeAdded[0] > 9 || toBeAdded[1] > 9) return;
     if (isArrayInArray(takenCells, toBeAdded)) return;
-    if (isArrayInArray(array, toBeAdded)) return;
+    if (isArrayInArray(array, toBeAdded)) {
+      toBeAdded = numberGenerator(0, 9, takenCells);
+      arrayOfCoords = [];
+      counter = 0;
+      return;
+    }
     // arrayOfCoords.forEach((coord) => {
     //   let isIncorrect = false;
     //   if (coord[0] === undefined || coord[1] === undefined || coord[0] === NaN || coord[1] === NaN) {

@@ -36,15 +36,13 @@ export default function gameBoard() {
       let toBeReturned = false;
       let called = false;
       ships.forEach((ship) => {
-        ship.location.forEach((location) => {
-          if (isArrayInArray(location, coordinates)) {
-            ship.hit();
-            called = true;
-          }
-        });
+        if (isArrayInArray(ship.location[0], coordinates)) {
+          ship.hit();
+          called = true;
+        }
         if (ship.isSunkenProperty === true) sunkenCounter += 1;
-        if (sunkenCounter === 5) alert('Game ended!');
       });
+      if (sunkenCounter === 5) alert('Game ended!');
       if (called === true) toBeReturned = true;
       return toBeReturned;
     },

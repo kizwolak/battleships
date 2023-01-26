@@ -19,7 +19,11 @@ export default function placeShipsAI(board) {
   });
   async function getCoordsForShip(e) {
     const response = await addShipToBoardAI(e, takenCells);
-    response.forEach((cell) => takenCells.push(cell));
+    response.forEach((cell) => {
+      console.log(cell);
+      takenCells.push(cell);
+    });
+    console.log(`taken cells: ${takenCells}`);
     board.place(response);
     e.removeEventListener('click', getCoordsForShip);
     e.style.color = 'green';

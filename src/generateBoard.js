@@ -42,7 +42,6 @@ export default function generateBoard() {
     function boardCellClick() {
       const cellContents = `[${boardCell.textContent}]`;
       console.log(cellContents);
-      console.log(board2.receiveAttack(JSON.parse(cellContents)));
       if (board2.receiveAttack(JSON.parse(cellContents)) === true) {
         boardCell.classList = '';
         boardCell.classList.remove('empty');
@@ -52,6 +51,11 @@ export default function generateBoard() {
         boardCell.classList = 'empty';
         boardCell.removeEventListener('click', boardCellClick);
       }
+      let sunkenCounter = 0;
+      board2.ships.forEach((ship) => {
+        if (ship.isSunkenProperty === true) sunkenCounter += 1;
+        if (sunkenCounter === 5) alert('Game ended!');
+      });
     }
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
     boardCell.classList = 'cell2';
