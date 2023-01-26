@@ -19,11 +19,6 @@ export default function generateBoard() {
   board1.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
-    // function boardCellClick() {
-    //   const cellContents = `[${boardCell.textContent}]`;
-    //   console.log(cellContents);
-    //   return cellContents;
-    // }
     boardCell.classList = 'cell1';
     board1.ships.forEach((ship) => {
       ship.location.forEach((location) => {
@@ -34,35 +29,16 @@ export default function generateBoard() {
         }
       });
     });
-    // boardCell.addEventListener('click', boardCellClick);
     webBoard1.appendChild(boardCell);
   });
   board2.board.forEach((cell) => {
     const boardCell = document.createElement('div');
-    function boardCellClick() {
-      const cellContents = `[${boardCell.textContent}]`;
-      console.log(cellContents);
-      if (board2.receiveAttack(JSON.parse(cellContents)) === true) {
-        boardCell.classList = '';
-        boardCell.classList.remove('empty');
-        boardCell.classList.remove('cell2');
-        boardCell.classList.add('cellTakenByPlayer');
-      } else if (board2.receiveAttack(JSON.parse(cellContents)) === false) {
-        boardCell.classList = 'empty';
-        boardCell.removeEventListener('click', boardCellClick);
-      }
-      let sunkenCounter = 0;
-      board2.ships.forEach((ship) => {
-        if (ship.isSunkenProperty === true) sunkenCounter += 1;
-        if (sunkenCounter === 5) alert('Game ended!');
-      });
-    }
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
     boardCell.classList = 'cell2';
     webBoard2.appendChild(boardCell);
     boardCell.addEventListener('click', boardCellClick);
   });
-  placeShips(board1);
+  placeShips(board1, board2);
   placeShipsAI(board2);
   setTimeout(console.log(board2.ships), 2000);
 }

@@ -1,6 +1,6 @@
 import addShipToBoardAI from './addShipToBoardAI.js';
 
-export default function placeShipsAI(board) {
+export default function placeShipsAI(board, oppBoard) {
   const board2Ships = document.querySelector('.board2Ships');
   const takenCells = [];
   const carrier2 = document.createElement('div');

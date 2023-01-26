@@ -1,6 +1,7 @@
 import addShipToBoard from './addShipToBoard.js';
+import attackLogic from './attackLogic.js';
 
-export default function placeShips(board) {
+export default function placeShips(board, oppBoard) {
   const board1Ships = document.querySelector('.board1Ships');
   const carrier1 = document.createElement('div');
   carrier1.textContent = 'Carrier (5 cells)';
@@ -23,8 +24,6 @@ export default function placeShips(board) {
   submarine2.textContent = 'Submarine (3 cells)';
   const destroyer2 = document.createElement('div');
   destroyer2.textContent = 'Destroyer (2 cells)';
-  const player2Ships = [carrier2, battleship2, cruiser2, submarine2, destroyer2];
-  const boardShips = board.ships;
   async function getCoordsForShip(e) {
     const response = await addShipToBoard(e);
     console.log(response);
@@ -32,9 +31,7 @@ export default function placeShips(board) {
     console.log(board.ships);
     e.target.removeEventListener('click', getCoordsForShip);
     e.target.style.color = 'green';
-    if (boardShips.length === 5) {
-      console.log('length check works!');
-    }
+    if (board.ships.length === 5) attackLogic(board, oppBoard);
   }
   player1Ships.forEach((element) => {
     board1Ships.appendChild(element);
