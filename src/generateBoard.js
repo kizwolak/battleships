@@ -18,10 +18,13 @@ export default function generateBoard() {
   const board1 = gameBoard();
   board1.belongsToPlayer = true;
   const board2 = gameBoard();
+  let cellNumber = 0;
   board1.board.forEach((cell) => {
     const boardCell = document.createElement('div');
     boardCell.textContent = `${cell[0]}, ${cell[1]}`;
     boardCell.classList = 'cell1';
+    boardCell.classList.add(`${cellNumber}`);
+    cellNumber += 1;
     board1.ships.forEach((ship) => {
       ship.location.forEach((location) => {
         const stringifiedCoords = JSON.stringify(cell);
