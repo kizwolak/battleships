@@ -81,7 +81,7 @@ export default async function addShipToBoardAI(e, array) {
         if (toBeAdded[0] - originalNum[0][0] > 5 || toBeAdded - originalNum[0][0] < -5) return;
       }
     }
-    if (toBeAdded[0] === undefined || toBeAdded[0] === NaN || toBeAdded[1] === undefined || toBeAdded[1] === NaN) {
+    if (toBeAdded[0] === undefined || toBeAdded[0] === NaN || toBeAdded[1] === undefined || toBeAdded[1] === NaN || toBeAdded[0] < 0 || toBeAdded[1] < 0 || toBeAdded[0] > 9 || toBeAdded[1] > 9) {
       alert(`NaN/undefined: ${toBeAdded}`);
       toBeAdded = numberGenerator(0, 9, takenCells);
       arrayOfCoords = [];
