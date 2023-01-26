@@ -32,29 +32,20 @@ export default function gameBoard() {
       ships.push(Ship(...coordinates));
     },
     receiveAttack(coordinates) {
-      const first = coordinates[0];
-      const second = coordinates[1];
-      let toBeReturned;
       let sunkenCounter = 0;
+      let toBeReturned = false;
+      let called = false;
       ships.forEach((ship) => {
         ship.location.forEach((location) => {
           if (isArrayInArray(location, coordinates)) {
             ship.hit();
-            console.log('hit!');
-            toBeReturned = true;
-          }
-          if (isArrayInArray(location, coordinates)) {
-            this.allShipsSunken = true;
-            console.log('end!');
-          } else {
-            this.missedAttacks.push([first, second]);
-            console.log('miss!');
-            toBeReturned = false;
+            called = true;
           }
         });
         if (ship.isSunkenProperty === true) sunkenCounter += 1;
         if (sunkenCounter === 5) alert('Game ended!');
       });
+      if (called === true) toBeReturned = true;
       return toBeReturned;
     },
   };

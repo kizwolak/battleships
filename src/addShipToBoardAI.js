@@ -29,6 +29,10 @@ export default async function addShipToBoardAI(e, array) {
     const random3 = coinFlip();
     const originalNum = arrayOfCoords.slice(0, 1);
     let toCompare = arrayOfCoords.slice(arrayOfCoords.length - 1, arrayOfCoords.length);
+    if (toBeAdded[0] === undefined || toBeAdded[1] === undefined || toBeAdded[0] === NaN || toBeAdded[1] === NaN) {
+      toCompare = arrayOfCoords.slice(0, 1);
+      toBeAdded = numberGenerator(0, 9, takenCells);
+    }
     if (arrayOfCoords.length === 1) {
       console.log(toCompare);
       console.log(`${toCompare[0][0]} ${toCompare[0][1]}`);
@@ -77,9 +81,25 @@ export default async function addShipToBoardAI(e, array) {
         if (toBeAdded[0] - originalNum[0][0] > 5 || toBeAdded - originalNum[0][0] < -5) return;
       }
     }
+    if (toBeAdded[0] === undefined || toBeAdded[0] === NaN || toBeAdded[1] === undefined || toBeAdded[1] === NaN) {
+      alert('NaN/undefined');
+      toBeAdded = numberGenerator(0, 9, takenCells);
+      arrayOfCoords = [];
+      counter = 0;
+      return;
+    }
     if (toBeAdded[0] < -1 || toBeAdded[1] < -1 || toBeAdded[0] > 9 || toBeAdded[1] > 9) return;
     if (isArrayInArray(takenCells, toBeAdded)) return;
     if (isArrayInArray(array, toBeAdded)) return;
+    // arrayOfCoords.forEach((coord) => {
+    //   let isIncorrect = false;
+    //   if (coord[0] === undefined || coord[1] === undefined || coord[0] === NaN || coord[1] === NaN) {
+    //     arrayOfCoords = [];
+    //     counter = 0;
+    //     isIncorrect = true;
+    //   }
+    //   if (isIncorrect) return;
+    // });
     arrayOfCoords.push(toBeAdded);
     takenCells.push(toBeAdded);
     counter += 1;

@@ -42,6 +42,7 @@ export default function generateBoard() {
     function boardCellClick() {
       const cellContents = `[${boardCell.textContent}]`;
       console.log(cellContents);
+      console.log(board2.receiveAttack(JSON.parse(cellContents)));
       if (board2.receiveAttack(JSON.parse(cellContents)) === true) {
         boardCell.classList = '';
         boardCell.classList.remove('empty');
