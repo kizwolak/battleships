@@ -7,6 +7,7 @@ export default function Ship(...coordinates) {
       this.hits += 1;
       if (hits === length) {
         this.isSunkenProperty = true;
+        console.log('sunken!');
       }
     },
     length,

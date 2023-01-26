@@ -42,8 +42,12 @@ export default function generateBoard() {
     function boardCellClick() {
       const cellContents = `[${boardCell.textContent}]`;
       console.log(cellContents);
-      if (board2.receiveAttack(JSON.parse(cellContents)) === true) boardCell.classList = 'cellTakenByPlayer';
-      else if (board2.receiveAttack(JSON.parse(cellContents)) === false) {
+      if (board2.receiveAttack(JSON.parse(cellContents)) === true) {
+        boardCell.classList = '';
+        boardCell.classList.remove('empty');
+        boardCell.classList.remove('cell2');
+        boardCell.classList.add('cellTakenByPlayer');
+      } else if (board2.receiveAttack(JSON.parse(cellContents)) === false) {
         boardCell.classList = 'empty';
         boardCell.removeEventListener('click', boardCellClick);
       }

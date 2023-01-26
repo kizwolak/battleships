@@ -35,6 +35,7 @@ export default function gameBoard() {
       const first = coordinates[0];
       const second = coordinates[1];
       let toBeReturned;
+      let sunkenCounter = 0;
       ships.forEach((ship) => {
         ship.location.forEach((location) => {
           if (isArrayInArray(location, coordinates)) {
@@ -51,6 +52,8 @@ export default function gameBoard() {
             toBeReturned = false;
           }
         });
+        if (ship.isSunkenProperty === true) sunkenCounter += 1;
+        if (sunkenCounter === 5) alert('Game ended!');
       });
       return toBeReturned;
     },
