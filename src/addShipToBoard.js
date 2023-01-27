@@ -2,6 +2,7 @@ export default async function addShipToBoard(e) {
   const arrayOfCoords = [];
   let numberOfCells = 0;
   let counter = 0;
+  let classCounter = 0;
   e.target.style.color = 'yellow';
   const checkMarkDiv = document.createElement('div');
   checkMarkDiv.textContent = '✔️';
@@ -97,6 +98,8 @@ export default async function addShipToBoard(e) {
         }
       }
       f.target.classList = classToBeAdded;
+      f.target.classList += ` ${classCounter}`;
+      classCounter += 1;
       arrayOfCoords.push(toBeAdded);
       counter += 1;
       if (numberOfCells === counter) {
@@ -113,7 +116,6 @@ export default async function addShipToBoard(e) {
     }
     crossMarkDiv.addEventListener('click', () => {
       e.target.style.color = '';
-      console.log(`.${classToBeAdded}`);
       const cellsTaken = document.querySelectorAll(`.${classToBeAdded}`);
       cellsTaken.forEach((cell) => {
         cell.classList.remove(`${classToBeAdded}`);
@@ -131,7 +133,6 @@ export default async function addShipToBoard(e) {
       cell.addEventListener('click', coordinates);
     });
   });
-
 //   const promise = new Promise((resolve, reject) => {
 //     if (arrayOfCoords.length === numberOfCells) {
 //       resolve();
