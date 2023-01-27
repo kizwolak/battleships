@@ -37,8 +37,7 @@ export default function attackLogic(board1, board2) {
         if (sunkenCounter2 === 5) alert('Human wins!');
       });
       let randomCPUattack = numberGenerator(0, 9, cpuAttacks);
-      console.log(JSON.stringify(randomCPUattack));
-      console.log(JSON.stringify(randomCPUattack[0]));
+      console.log((randomCPUattack));
       if (isArrayInArray(cpuAttacks, randomCPUattack)) {
         randomCPUattack = numberGenerator(0, 9, cpuAttacks);
         console.log('contains: true');
@@ -64,41 +63,42 @@ export default function attackLogic(board1, board2) {
           console.log(randomCPUattack[1]);
           if (test1[0] === randomCPUattack[0] && test1[1] === randomCPUattack[1]) {
             console.log(cellTakenByPlayer2[i].textContent);
-            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer2 ${[i]}`);
+            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer2 ${i}`);
           }
         }
-        for (let i = 0; i < cellTakenByPlayer3.length; i++) {
-          const test1 = (JSON.parse(`[${cellTakenByPlayer3[i].textContent}]`));
+        for (let j = 0; j < cellTakenByPlayer3.length; j++) {
+          const test1 = (JSON.parse(`[${cellTakenByPlayer3[j].textContent}]`));
           console.log(test1);
           if (test1[0] === randomCPUattack[0] && test1[1] === randomCPUattack[1]) {
-            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer3 ${[i]}`);
+            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer3 ${j}`);
           }
         }
-        for (let i = 0; i < cellTakenByPlayer3Cruiser.length; i++) {
-          const test1 = (JSON.parse(`[${cellTakenByPlayer3Cruiser[i].textContent}]`));
+        for (let k = 0; k < cellTakenByPlayer3Cruiser.length; k++) {
+          const test1 = (JSON.parse(`[${cellTakenByPlayer3Cruiser[k].textContent}]`));
           console.log(test1);
           if (test1[0] === randomCPUattack[0] && test1[1] === randomCPUattack[1]) {
-            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer3Cruiser ${[i]}`);
+            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer3Cruiser ${k}`);
           }
         }
-        for (let i = 0; i < cellTakenByPlayer4.length; i++) {
-          const test1 = (JSON.parse(`[${cellTakenByPlayer4[i].textContent}]`));
+        for (let l = 0; l < cellTakenByPlayer4.length; l++) {
+          const test1 = (JSON.parse(`[${cellTakenByPlayer4[l].textContent}]`));
           console.log(test1);
           if (test1[0] === randomCPUattack[0] && test1[1] === randomCPUattack[1]) {
-            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer4 ${[i]}`);
+            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer4 ${l}`);
           }
         }
-        for (let i = 0; i < cellTakenByPlayer5.length; i++) {
-          const test1 = (JSON.parse(`[${cellTakenByPlayer5[i].textContent}]`));
+        for (let m = 0; m < cellTakenByPlayer5.length; m++) {
+          const test1 = (JSON.parse(`[${cellTakenByPlayer5[m].textContent}]`));
           console.log(test1);
           if (test1[0] === randomCPUattack[0] && test1[1] === randomCPUattack[1]) {
-            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer5 ${[i]}`);
+            toBeReturned = document.getElementsByClassName(`cellTakenByPlayer5 ${m}`);
           }
         }
         if (toBeReturned === undefined) {
           const attackedCellIndex = isArrayInArray(board1.board, randomCPUattack);
           console.log(attackedCellIndex);
-          toBeReturned = document.getElementsByClassName(`cell1 ${attackedCellIndex}`);
+          const middle = document.getElementsByClassName(`cell1 ${attackedCellIndex}`);
+          toBeReturned = middle[0];
           console.log(toBeReturned);
         }
         console.log(toBeReturned);
@@ -106,18 +106,19 @@ export default function attackLogic(board1, board2) {
       }
       console.log(randomCPUattack);
       const cellToBeModified = classChecker();
-      console.log(`cellToBeModified: ${cellToBeModified[0].textContent[0]}`);
-      const cell1Contents = `[${cellToBeModified[0].textContent}]`;
+      // console.log(`cellToBeModified: ${cellToBeModified[0].textContent[0]}`);
+      const cell1Contents = `[${cellToBeModified.textContent}]`;
+      console.log(cell1Contents);
       console.log(`cell1Contents: ${cell1Contents}`);
-      if (board1.receiveAttack(JSON.parse(cell1Contents)) === true) {
+      if (board1.receiveAttack(randomCPUattack) === true) {
         console.log('computer hit!');
-        cellToBeModified[0].classList = '';
-        cellToBeModified[0].classList.remove('empty');
-        cellToBeModified[0].classList.remove('cell2');
-        cellToBeModified[0].classList.add('cellTakenByComputer');
+        cellToBeModified.classList = '';
+        cellToBeModified.classList.remove('empty');
+        cellToBeModified.classList.remove('cell2');
+        cellToBeModified.classList.add('cellTakenByComputer');
       } else {
         cpuAttacks.push(randomCPUattack);
-        cellToBeModified[0].classList = 'empty';
+        cellToBeModified.classList = 'empty';
         cellToBeModified.removeEventListener('click', boardCellClick);
       }
       let sunkenCounter1 = 0;
