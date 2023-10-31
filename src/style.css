@@ -79,8 +79,6 @@ h1 {
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   justify-content: center;
-  width: 20vw;
-  height: 40vw;
 }
 
 .board1container {
