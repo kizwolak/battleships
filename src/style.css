@@ -231,7 +231,3 @@ button:hover {
   display: none;
   transition: opacity 1.5s display 1.5s linear;
 }
-
-.activated {
-  animation: opacityAnimation 3s ease-in;
-}
