@@ -1394,22 +1394,11 @@
                                     toCompare0[0][1] - toCompare1[0][1] ===
                                     1
                                   ) {
-                                    // if (toBeAdded[1] - toCompare0[0][1] !== 1) {
-                                    // console.log('drugi if');
-                                    // return;
-                                    // }
                                   }
                                   if (
                                     toCompare0[0][1] - toCompare1[0][1] ===
                                     -1
-                                  ) {
-                                    // if (toCompare0[0][1] - toBeAdded[1] !== 1) {
-                                    // console.log(toCompare0);
-                                    // console.log(toBeAdded);
-                                    // console.log('trzeci if');
-                                    // return;
-                                    // }
-                                  }
+                                  ) 
                                 }
                               }
                             }
@@ -2102,12 +2091,6 @@
                           );
                         }
                         if (arrayOfCoords.length === 1) {
-                          console.log(toCompare);
-                          console.log(
-                            ""
-                              .concat(toCompare[0][0], " ")
-                              .concat(toCompare[0][1])
-                          );
                           if (random1 === 0) {
                             if (random3 === 0) {
                               toBeAdded = [
@@ -2277,7 +2260,6 @@
                         );
                         return contains;
                       };
-                      console.log(e.textContent);
                       takenCells = [];
                       arrayOfCoords = [];
                       numberOfCells = 0;
@@ -2311,8 +2293,6 @@
                           takenCells
                         );
                         coordsFilter(number1);
-                        console.log(arrayOfCoords);
-                        console.log(number1);
                       }
                       return _context.abrupt(
                         "return",
@@ -2355,8 +2335,6 @@
           );
 
         function attackLogic(board1, board2) {
-          console.log([0, 0]);
-          console.log(board1.receiveAttack([0, 0]));
           function isArrayInArray(arr, item) {
             let counter = 0;
             const itemAsString = JSON.stringify(item);
@@ -2410,11 +2388,7 @@
                   cpuAttacks
                 );
               }
-              // console.log(randomCPUattack);
-              // const cellTakenByPlayer2 = document.getElementsByClassName('cellTakenByPlayer2');
-              // const test = (JSON.parse(`[${cellTakenByPlayer2[0].innerHTML}]`));
-              // console.log(test);
-              // console.log(`test0: ${test[0]}`);
+
               function classChecker() {
                 let toBeReturned;
                 const cellTakenByPlayer2 =
@@ -2439,7 +2413,6 @@
                     toBeReturned = document.getElementsByClassName(
                       "cellTakenByPlayer2 ".concat(i)
                     );
-                    console.log("1 test");
                     break;
                   }
                 }
@@ -2454,7 +2427,6 @@
                     toBeReturned = document.getElementsByClassName(
                       "cellTakenByPlayer3 ".concat(j)
                     );
-                    console.log("2 test");
                     break;
                   }
                 }
@@ -2466,7 +2438,6 @@
                     _test2[0] === randomCPUattack[0] &&
                     _test2[1] === randomCPUattack[1]
                   ) {
-                    console.log("3 test");
                     toBeReturned = document.getElementsByClassName(
                       "cellTakenByPlayer3Cruiser ".concat(k)
                     );
@@ -2481,7 +2452,6 @@
                     _test3[0] === randomCPUattack[0] &&
                     _test3[1] === randomCPUattack[1]
                   ) {
-                    console.log("4 test");
                     toBeReturned = document.getElementsByClassName(
                       "cellTakenByPlayer4 ".concat(l)
                     );
@@ -2492,12 +2462,10 @@
                   const _test4 = JSON.parse(
                     "[".concat(cellTakenByPlayer5[m].textContent, "]")
                   );
-                  console.log(_test4);
                   if (
                     _test4[0] === randomCPUattack[0] &&
                     _test4[1] === randomCPUattack[1]
                   ) {
-                    console.log("5 test");
                     toBeReturned = document.getElementsByClassName(
                       "cellTakenByPlayer5 ".concat(m)
                     );
@@ -2509,27 +2477,19 @@
                     board1.board,
                     randomCPUattack
                   );
-                  console.log(attackedCellIndex);
                   toBeReturned = document.getElementsByClassName(
                     "cell1 ".concat(attackedCellIndex)
                   );
-                  console.log(toBeReturned);
                 }
                 return toBeReturned;
               }
               const cellToBeModified = classChecker();
-              console.log(cellToBeModified[0]);
-              // console.log(`cellToBeModified: ${cellToBeModified[0].textContent[0]}`);
-              // const cell1Contents = JSON.parse(`[${cellToBeModified[0].textContent}]`);
-              // console.log(cell1Contents);
-              // console.log(`cell1Contents: ${cell1Contents}`);
+
               if (board1.receiveAttack(randomCPUattack) === true) {
-                console.log("computer hit!");
                 cellToBeModified[0].classList.value = "cellTakenByComputer";
               } else {
                 cpuAttacks.push(randomCPUattack);
                 cellToBeModified[0].classList.value = "empty";
-                // cellToBeModified.removeEventListener('click', boardCellClick);
               }
 
               let sunkenCounter1 = 0;
@@ -2718,7 +2678,6 @@
             const boardCell = document.createElement("div");
             function boardCellClick() {
               const cellContents = "[".concat(boardCell.textContent, "]");
-              console.log(cellContents);
               if (board2.receiveAttack(JSON.parse(cellContents)) === true) {
                 boardCell.classList = "";
                 boardCell.classList.remove("empty");
@@ -2749,7 +2708,6 @@
             board2
           );
           (0, _placeShipsAI_js__WEBPACK_IMPORTED_MODULE_2__.default)(board2);
-          setTimeout(console.log(board2.ships), 2000);
         }
         /***/
       },
@@ -3456,9 +3414,7 @@
                         );
                       case 2:
                         response = _context.sent;
-                        console.log(response);
                         board.place(response);
-                        console.log(board.ships);
                         e.target.removeEventListener("click", getCoordsForShip);
                         e.target.style.color = "green";
                         if (board.ships.length === 5)
@@ -4112,14 +4068,11 @@
                       case 2:
                         response = _context.sent;
                         response.forEach((cell) => {
-                          console.log(cell);
                           takenCells.push(cell);
                         });
-                        console.log("taken cells: ".concat(takenCells));
                         board.place(response);
                         e.removeEventListener("click", getCoordsForShip);
                         e.style.color = "green";
-                        console.log(board.ships);
                       case 9:
                       case "end":
                         return _context.stop();
@@ -4177,9 +4130,7 @@
               if (this.hits === this.length) {
                 this.isSunkenProperty = true;
               }
-              console.log("Length: ".concat(this.length));
-              console.log("Hits: ".concat(this.hits));
-              console.log("Sunken property: ".concat(this.isSunkenProperty));
+
             },
             location,
           };

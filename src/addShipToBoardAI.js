@@ -2,7 +2,6 @@ import numberGenerator from "./numberGenerator.js";
 import coinFlip from "./coinFlip.js";
 
 export default async function addShipToBoardAI(e, array) {
-  console.log(e.textContent);
   const takenCells = [];
   let arrayOfCoords = [];
   let numberOfCells = 0;
@@ -42,8 +41,6 @@ export default async function addShipToBoardAI(e, array) {
       toBeAdded = numberGenerator(0, 9, takenCells);
     }
     if (arrayOfCoords.length === 1) {
-      console.log(toCompare);
-      console.log(`${toCompare[0][0]} ${toCompare[0][1]}`);
       if (random1 === 0) {
         if (random3 === 0) {
           toBeAdded = [toCompare[0][0] - 1, toCompare[0][1]];
@@ -168,8 +165,6 @@ export default async function addShipToBoardAI(e, array) {
   while (counter !== numberOfCells) {
     number1 = numberGenerator(0, 9, takenCells);
     coordsFilter(number1);
-    console.log(arrayOfCoords);
-    console.log(number1);
   }
   return new Promise((resolve) => {
     if (numberOfCells === counter) {

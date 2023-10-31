@@ -105,20 +105,6 @@ export default async function addShipToBoard(e) {
             toCompare2[0][1] - toBeAdded[1] > 1 ||
             toCompare2[0][1] - toBeAdded[1] < -1
           ) {
-            if (toCompare0[0][1] - toCompare1[0][1] === 1) {
-              // if (toBeAdded[1] - toCompare0[0][1] !== 1) {
-              // console.log('drugi if');
-              // return;
-              // }
-            }
-            if (toCompare0[0][1] - toCompare1[0][1] === -1) {
-              // if (toCompare0[0][1] - toBeAdded[1] !== 1) {
-              // console.log(toCompare0);
-              // console.log(toBeAdded);
-              // console.log('trzeci if');
-              // return;
-              // }
-            }
           }
         }
       }

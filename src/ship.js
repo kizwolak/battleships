@@ -13,9 +13,6 @@ export default function Ship(...coordinates) {
       if (this.hits === this.length) {
         this.isSunkenProperty = true;
       }
-      console.log(`Length: ${this.length}`);
-      console.log(`Hits: ${this.hits}`);
-      console.log(`Sunken property: ${this.isSunkenProperty}`);
     },
     location,
   };

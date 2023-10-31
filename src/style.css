@@ -1,228 +1,239 @@
 @font-face {
-    font-family: 'Gruppo';
-    src: url(./fonts/Gruppo-Regular.ttf);
+  font-family: "Gruppo";
+  src: url(./fonts/Gruppo-Regular.ttf);
 }
 
 @keyframes opacityAnimation {
-    0% {
-        opacity: 0 
-    }
-    50% {
-        opacity: 0.5;
-        display: block;
-    }
-    100% {
-        opacity: 1
-    }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+    display: block;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes colourAnimation {
-    0% { color: black; }
-    100% { color: #ff124f}
+  0% {
+    color: black;
+  }
+  100% {
+    color: #ff124f;
+  }
 }
 
 @keyframes visibilityAnimationHidden {
-    100% { visibility: hidden; }
+  100% {
+    visibility: hidden;
+  }
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Gruppo', sans-serif;
-    background-color: #602080;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gruppo", sans-serif;
+  background-color: #602080;
 }
 
 h1 {
-    font-size: 6em;
-    color: #ff00a0;
-    background-color: transparent;
-    animation: opacityAnimation 1s ease-in;
+  font-size: 6em;
+  color: #ff00a0;
+  background-color: transparent;
+  animation: opacityAnimation 1s ease-in;
 }
 
 .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 50vh;
-    background-image: url('/src/images/WIKIPEDIA15_BATTLESHIP.svg');
-    background-repeat: no-repeat;
-    background-size: 75%;
-    background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50vh;
+  background-image: url("/src/images/WIKIPEDIA15_BATTLESHIP.svg");
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: center;
 }
 
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .boardContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 80vh;
-    width: 100vw;
-    margin-top: 3.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 80vh;
+  margin-top: 3.5em;
 }
 
-.board1, .board2 {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    justify-content: center;
-    width: 20vw;
-    height: 40vw;
+.board1,
+.board2 {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-content: center;
+  width: 20vw;
+  height: 40vw;
 }
 
 .board1container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .board1container.activated {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
 }
 
-.player1Name, .player2Name {
-    font-size: 3em;
+.player1Name,
+.player2Name {
+  font-size: 3em;
 }
 
-.board1Ships, .board2Ships {
-    font-size: 2em;
-    margin-bottom: 1.5em;
-    background-color: transparent;
-    font-weight: bold;
+.board1Ships,
+.board2Ships {
+  font-size: 2em;
+  margin-bottom: 1.5em;
+  background-color: transparent;
+  font-weight: bold;
 }
 
-.board1Ships > *:hover, .board2Ships > *:hover {
-    color: green;
-    font-weight: bold;
+.board1Ships > *:hover,
+.board2Ships > *:hover {
+  color: green;
+  font-weight: bold;
 }
 
-.cell1, .cell2 {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;  
+.cell1,
+.cell2 {
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
 }
 
 .cellTakenByPlayer {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    background-color: #ff124f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  background-color: #ff124f;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .cellTakenByComputer {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    background-color: #edf84f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  background-color: #edf84f;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .cellTakenByPlayer3Cruiser {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    background-color: #ff124f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  background-color: #ff124f;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .cellTakenByPlayer2 {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    background-color: #ff124f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  background-color: #ff124f;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .cellTakenByPlayer3 {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    background-color: #ff124f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  background-color: #ff124f;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .cellTakenByPlayer4 {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    background-color: #ff124f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  background-color: #ff124f;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .cellTakenByPlayer5 {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    color: transparent;
-    background-color: #ff124f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  border: 1px solid black;
+  width: 4em;
+  height: 4em;
+  color: transparent;
+  background-color: #ff124f;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.cell1:hover, .cell2:hover {
-    transition: 0.4s;
-    background-color: #fe75fe;
+.cell1:hover,
+.cell2:hover {
+  transition: 0.4s;
+  background-color: #fe75fe;
 }
 
 .empty {
-    background-color: #33163a;
-    width: 4em;
-    height: 4em;
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;
-    border: 1px solid black;
+  background-color: #33163a;
+  width: 4em;
+  height: 4em;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  border: 1px solid black;
 }
 
 button {
-    font-weight: bold;
-    border: none;
-    background-color: transparent;
-    font-size: 2.5em;
-    animation: opacityAnimation 1s ease-in;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  font-size: 2.5em;
+  animation: opacityAnimation 1s ease-in;
 }
 
 button:hover {
-    color: #ff124f;
-    transition: 0.3s;
+  color: #ff124f;
+  transition: 0.3s;
 }
 
 .deactivated {
-    animation: visibilityAnimationHidden 2s ease-out;
-    opacity: 0;
-    display: none;
-    transition: opacity 1.5s display 1.5s linear;
+  animation: visibilityAnimationHidden 2s ease-out;
+  opacity: 0;
+  display: none;
+  transition: opacity 1.5s display 1.5s linear;
 }
 
 .activated {
-    animation: opacityAnimation 3s ease-in;
+  animation: opacityAnimation 3s ease-in;
 }
